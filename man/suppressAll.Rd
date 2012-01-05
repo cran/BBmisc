@@ -1,0 +1,18 @@
+\name{suppressAll}
+\alias{suppressAll}
+\title{Suppresses all output except for errors.}
+\usage{
+  suppressAll(expr)
+}
+\arguments{
+  \item{expr}{[valid R expression]\cr Expression.}
+}
+\value{
+  Return value of expression invisibly.
+}
+\description{
+  Evaluates an expression and suppresses all output except
+  for errors, meaning: prints, messages, warnings and
+  package startup messages.
+}
+

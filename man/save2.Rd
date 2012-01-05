@@ -1,0 +1,39 @@
+\name{save2}
+\alias{save2}
+\title{Save multiple objects to a file.}
+\usage{
+  save2(..., file, ascii = FALSE, version = NULL,
+    compress = !ascii, compression_level,
+    eval.promises = TRUE, precheck = TRUE)
+}
+\arguments{
+  \item{...}{[\code{any}]\cr Will be converted to an
+  environment and then passed to \code{\link[base]{save}}.}
+
+  \item{file}{See help of \code{\link[base]{save}}.}
+
+  \item{ascii}{See help of \code{\link[base]{save}}.}
+
+  \item{version}{See help of \code{\link[base]{save}}.}
+
+  \item{compress}{See help of \code{\link[base]{save}}.}
+
+  \item{compression_level}{See help of
+  \code{\link[base]{save}}.}
+
+  \item{eval.promises}{See help of
+  \code{\link[base]{save}}.}
+
+  \item{precheck}{See help of \code{\link[base]{save}}.}
+}
+\value{
+  See help of \code{\link[base]{save}}.
+}
+\description{
+  A simple wrapper for \code{save}. Understands key = value
+  syntax to save objects using arbitrary variable names.
+  All options of \code{\link[base]{save}}, except
+  \code{list} and \code{envir}, are available and passed to
+  \code{\link[base]{save}}.
+}
+
