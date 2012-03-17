@@ -6,6 +6,9 @@
 #'   Passed to \code{collapse} in  \code{\link{paste}}.
 #' @return [\code{character(1)}].
 #' @export
+#' @examples 
+#' collapse(c("foo", "bar"))
+#' collapse(c("foo", "bar"), sep=";")
 collapse = function(x, sep=",") {
   paste(x, collapse=sep)
 }

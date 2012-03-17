@@ -32,6 +32,19 @@
 #'   Default is \code{TRUE}.
 #' @return Nothing.
 #' @export
+#' @examples
+#' x <- 1L
+#' checkArg(x, "integer", len=1, na.ok=FALSE, upper=3L)
+#' x <- as.integer(NA)
+#' checkArg(x, "integer", len=1, na.ok=TRUE)
+#' x <- c("foo", "bar")
+#' checkArg(x, "character")
+#' x <- "foo"
+#' checkArg(x, choices=c("foo", "bar"))
+#' x <- c("foo", "bar")
+#' checkArg(x, subset=c("foo", "bar"))
+#' fun <- function(foo, bar)
+#' checkArg(fun, formals=c("foo", "bar"))
 checkArg = function(x, cl, len, min.len, choices, subset, lower=NA, upper=NA, na.ok = TRUE, formals) {
   s = deparse(substitute(x))
   if (missing(x))
@@ -63,7 +76,7 @@ checkArg = function(x, cl, len, min.len, choices, subset, lower=NA, upper=NA, na
       stop("Argument ", s, " must not contain any NAs!")
     if (is.numeric(x) && !is.na(lower) && ((is.na(x) && !na.ok) || (!is.na(x) && x < lower)))
       stop("Argument ", s, " must be greater than or equal ", lower, "!")
-    if (is.numeric(x) && !is.na(upper) && ((is.na(x) && !na.ok) || (!is.na(x) && x < lower)))
+    if (is.numeric(x) && !is.na(upper) && ((is.na(x) && !na.ok) || (!is.na(x) && x > upper)))
       stop("Argument ", s, " must be less than or equal ", upper, "!")
   }
 }

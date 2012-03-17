@@ -15,4 +15,8 @@
   Is one / are several files a directory? If a file does
   not exist, \code{FALSE} is returned.
 }
+\examples{
+print(isDirectory(tempdir()))
+print(isDirectory(tempfile()))
+}
 

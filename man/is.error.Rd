@@ -14,4 +14,10 @@
 \description{
   A simple wrapper for \code{is(x, "try-error")}.
 }
+\examples{
+x <- try(stop("foo"))
+print(is.error(x))
+x <- 1
+print(is.error(x))
+}
 

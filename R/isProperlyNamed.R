@@ -5,6 +5,10 @@
 #'   The vector or list. 
 #' @return [\code{logical(1)}].
 #' @export
+#' @examples
+#' isProperlyNamed(list(1))
+#' isProperlyNamed(list(a=1))
+#' isProperlyNamed(list(a=1, 2))
 isProperlyNamed = function(x) {
   ns = names(x)
   (length(x) == 0) ||

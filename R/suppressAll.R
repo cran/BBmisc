@@ -5,6 +5,12 @@
 #'   Expression. 
 #' @return Return value of expression invisibly. 
 #' @export 
+#' @examples
+#' suppressAll({
+#'   print("foo")
+#'   message("foo")
+#'   warning("foo")
+#' })
 suppressAll = function(expr) {
   capture.output({
     z = suppressWarnings(

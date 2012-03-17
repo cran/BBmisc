@@ -2,15 +2,26 @@
 \alias{stopf}
 \title{Wrapper for stop and sprintf.}
 \usage{
-  stopf(...)
+  stopf(..., warning.length = 8170)
 }
 \arguments{
   \item{...}{[any]\cr See \code{\link{sprintf}}.}
+
+  \item{warning.length}{[\code{integer(1)}]\cr Number of
+  chars after which the error message gets truncated, see
+  ?options.  Default is 8170.}
 }
 \value{
   Nothing.
 }
 \description{
-  A simple wrapper for \code{stop(sprintf(...))}.
+  A wrapper for \code{\link{stop}} with
+  \code{\link{sprintf}} applied to the arguments. Notable
+  difference is that error messages are not truncated to
+  1000 characters by default.
+}
+\examples{
+err <- "an error."
+try(stopf("This is \%s", err))
 }
 

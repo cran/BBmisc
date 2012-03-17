@@ -1,0 +1,14 @@
+BBmisc_1.0-58: 
+- First submit to CRAN.
+
+BBmisc_1.0-74:
+- much more examples
+- fixed a bug in checkArg
+- makeProgressbar: new option 'inc' to increment
+- stopf: new option warning.length
+- more options for requirePackages
+- new functions: chunk, isExpensiveExampleOk
+
+BBmisc_1.0-77:
+- removed calls to .Internal
+

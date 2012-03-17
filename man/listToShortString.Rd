@@ -15,4 +15,7 @@
   like this \dQuote{a=1,<unamed>=2,b=<data.frame>}. Vectors
   are displayed till a certain length.
 }
+\examples{
+listToShortString(list(a=1, b=NULL, "foo", c=1:10))
+}
 

@@ -5,6 +5,9 @@
 #'   File names, all strings.
 #' @return [\code{logical}]. 
 #' @export
+#' @examples
+#' print(isDirectory(tempdir()))
+#' print(isDirectory(tempfile()))
 isDirectory = function(...) {
   x = file.info(...)$isdir
   !is.na(x) & x
@@ -18,6 +21,9 @@ isDirectory = function(...) {
 #'   Directory names, all strings.
 #' @return [\code{logical}]. 
 #' @export
+#' @examples
+#' print(isEmptyDirectory(tempdir()))
+#' print(isEmptyDirectory(tempfile()))
 isEmptyDirectory = function(...) {
   vapply(list(...), FUN.VALUE=logical(1), FUN=function(x) {
     isDirectory(x) && length(list.files(x, all.files=TRUE, include.dirs=TRUE)) == 2

@@ -36,4 +36,8 @@
   \code{list} and \code{envir}, are available and passed to
   \code{\link[base]{save}}.
 }
+\examples{
+x <- 1
+save2(y=x, file=tempfile())
+}
 

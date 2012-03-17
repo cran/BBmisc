@@ -15,4 +15,11 @@
   for errors, meaning: prints, messages, warnings and
   package startup messages.
 }
+\examples{
+suppressAll({
+  print("foo")
+  message("foo")
+  warning("foo")
+})
+}
 

@@ -13,11 +13,26 @@
 #'   Default is \dQuote{}.
 #' @param char [\code{character(1)}]\cr
 #'   A single character used to display progress in the bar. 
-#    Default is \sQuote{+}.
-#' @return [\code{function(value, msg="")}]. A progress bar function. 
+#'   Default is \sQuote{+}.
+#' @return [\code{function(value, inc, msg="")}]. A progress bar function. 
 #'   Call it during a loop to change the display the progress bar. 
+#'   You can either set the current \code{value} or increment the current value
+#'   by using \code{inc}. Note that you are not allowed to decrease the value by setting
+#'   \code{value}. If you call this function without setting any of the former two arguments,
+#'   the bar is simply redrawn with the current value.
 #'   The message can be set to change the label in front of the bar.
 #' @export
+#' @examples
+#' bar <- makeProgressBar(max=5, label="test-bar")
+#' for (i in 0:5) {
+#'   bar(i)
+#'   Sys.sleep(0.5)
+#' }
+#' bar <- makeProgressBar(max=5, label="test-bar")
+#' for (i in 1:5) {
+#'   bar(inc=1)
+#'   Sys.sleep(0.5)
+#' }
 makeProgressBar = function(min=0, max=100, label="", char="+") {
   checkArg(min, "numeric", len=1, na.ok=FALSE)                          
   checkArg(max, "numeric", len=1, na.ok=FALSE)                          
@@ -32,9 +47,20 @@ makeProgressBar = function(min=0, max=100, label="", char="+") {
   delta = max - min
   kill.line = "\r"
   did.final.newline = FALSE  
-  
-  function(value, msg=label) {
-    checkArg(value, "numeric", len=1, na.ok=FALSE, lower=min, upper=max)
+  cur.value = min
+
+  function(value, inc, msg=label) {
+    if (!missing(value) && !missing(inc))
+      stop("You must not set value and inc!")
+    else if (!missing(value))
+      checkArg(value, "numeric", len=1, na.ok=FALSE, lower=max(min,cur.value), upper=max)
+    else if (!missing(inc)) {
+      checkArg(inc, "numeric", len=1, na.ok=FALSE, lower=0, upper=max-cur.value)
+      value = cur.value + inc
+    } else {
+      value = cur.value
+    }
+    
     if (!did.final.newline)  {
       rate = (value - min) / delta 
       bin = round(rate * bar.width)
@@ -51,7 +77,7 @@ makeProgressBar = function(min=0, max=100, label="", char="+") {
       cat(kill.line)
       msg = str_pad(msg, label.width)
       catf("%s |%s| %3i%% (%02i:%02i:%02i)", newline=FALSE,
-        msg, paste(bar, collapse=""), round(rate*100),
+        msg, collapse(bar, sep=""), round(rate*100),
         rest.time["hours"], rest.time["minutes"], rest.time["seconds"])
       if (value == max) {
         cat("\n")
@@ -59,5 +85,6 @@ makeProgressBar = function(min=0, max=100, label="", char="+") {
       }
       flush.console()
     }
+    cur.value <<- value
   }
 }

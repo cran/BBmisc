@@ -14,4 +14,9 @@
   Are all elements of a list / vector uniquely named?
   \code{NA} or \dQuote{} are not allowed as names.
 }
+\examples{
+isProperlyNamed(list(1))
+isProperlyNamed(list(a=1))
+isProperlyNamed(list(a=1, 2))
+}
 

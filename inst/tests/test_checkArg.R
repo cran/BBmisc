@@ -14,6 +14,13 @@ test_that("checkArg", {
   f = function(x) checkArg(x, cl="numeric", lower=2)
   f(4:6)
   expect_error(f(1:3))
+  f = function(x) checkArg(x, cl="numeric", upper=2)
+  f(1)
+  expect_error(f(3), "less than or equal 2")
+  f = function(x) checkArg(x, cl="numeric", lower=1, upper=2)
+  f(1); f(1.5); f(2)
+  expect_error(f(0), "greater than or equal 1")
+  expect_error(f(3), "less than or equal 2")
   
   f = function(x) checkArg(x, formals=c("foo", "bar"))
   f(function(foo, bar) 1)

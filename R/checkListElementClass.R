@@ -8,6 +8,9 @@
 #'   Class that elements must have. Checked with \code{is}.
 #' @return Nothing.
 #' @export
+#' @examples
+#' xs <- as.list(1:3)
+#' checkListElementClass(xs, "numeric")
 checkListElementClass = function(xs, cl) {
   s = deparse(substitute(xs))
   sapply(seq_along(xs), function(i) {
@@ -15,4 +18,5 @@ checkListElementClass = function(xs, cl) {
     if(!(is(x, cl)))
       stop("List ", s, " has element of wrong type ", class(x)[1], " at position ", i, ". Should be: ", cl)
   })  
+  invisible(NULL)
 }

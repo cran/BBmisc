@@ -8,6 +8,9 @@
 #'   \code{NULL} is used.
 #' @return [\code{list}].
 #' @export
+#' @examples
+#' namedList(c("a", "b"))
+#' namedList(c("a", "b"), init=1)
 namedList = function(names, init) {
   if (missing(names))
     return(list())

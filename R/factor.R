@@ -6,6 +6,11 @@
 #'   The factors.
 #' @return [\code{factor}].
 #' @export
+#' @examples
+#' f1 <- factor(c("a", "b"))
+#' f2 <- factor(c("b", "c"))
+#' print(c(f1, f2))
+#' print(cFactor(f1, f2))
 cFactor = function(...) {
   args = list(...)
   for (i in seq_along(args))

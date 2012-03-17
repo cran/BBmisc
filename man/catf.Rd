@@ -22,4 +22,8 @@
 \description{
   A simple wrapper for \code{cat(sprintf(...))}.
 }
+\examples{
+msg <- "a message."
+catf("This is \%s", msg)
+}
 

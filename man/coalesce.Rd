@@ -14,4 +14,10 @@
   Returns first non-missing, non-null argument, otherwise
   \code{NULL}.
 }
+\examples{
+f = function(x,y) {
+  print(coalesce(NULL, x, y))
+}
+f(y=3)
+}
 

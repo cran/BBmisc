@@ -15,4 +15,8 @@
   Is one / are several directories empty? If file does not
   exist or is not a directory, \code{FALSE} is returned.
 }
+\examples{
+print(isEmptyDirectory(tempdir()))
+print(isEmptyDirectory(tempfile()))
+}
 

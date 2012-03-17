@@ -15,6 +15,10 @@
 #'   Default is \code{TRUE}.
 #' @return [\code{list} or simplified vector].
 #' @export
+#' @examples
+#' xs = list(list(a=1, b=2), list(a=5, b=7))
+#' extractSubList(xs, "a")
+#' extractSubList(xs, "a", simplify=FALSE)
 extractSubList = function(xs, element, element.value, simplify=TRUE, use.names=TRUE) {
   if (!missing(element.value))  
     ys = vapply(xs, function(x) x[[element]], FUN.VALUE=element.value)
