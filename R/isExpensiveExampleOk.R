@@ -1,3 +1,5 @@
+#' Conditional checking for expensive examples.
+#' 
 #' Queries environment variable \dQuote{R_EXPENSIVE_EXAMPLE_OK}.
 #' Returns \code{TRUE} iff set exactly to \dQuote{TRUE}.
 #' This allows conditional checking of expensive examples in packages
@@ -6,7 +8,6 @@
 #' A better option than \dQuote{dont_run} in many cases, where such examples
 #' are not checked at all. 
 #' 
-#' @title Conditional checking for expensive examples.
 #' @return [\code{logical(1)}].
 #' @export
 #' @examples

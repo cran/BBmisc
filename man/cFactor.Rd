@@ -11,10 +11,9 @@
   [\code{factor}].
 }
 \description{
-  Combine multiple factors and return a factor. Note that
-  function does not inherit from \code{\link{c}} to not
-  change R semantics behind your back when this package is
-  loaded.
+  Note that function does not inherit from \code{\link{c}}
+  to not change R semantics behind your back when this
+  package is loaded.
 }
 \examples{
 f1 <- factor(c("a", "b"))

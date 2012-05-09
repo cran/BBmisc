@@ -1,6 +1,7 @@
-#' Are all elements of a list / vector uniquely named? 
+#' Are all elements of a list / vector uniquely named?
+#'  
 #' \code{NA} or \dQuote{} are not allowed as names.
-#' @title Are all elements of a list / vector uniquely named?
+#' 
 #' @param x [\code{vector}]\cr
 #'   The vector or list. 
 #' @return [\code{logical(1)}].

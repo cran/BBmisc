@@ -1,5 +1,5 @@
 #' Extracts a named element from a list of lists.
-#' @title Extracts a named element from a list of lists.
+#' 
 #' @param xs [\code{list}]\cr
 #'   A list of named lists. 
 #' @param element [\code{character(1)}]\cr

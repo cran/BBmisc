@@ -1,6 +1,6 @@
 \name{namedList}
 \alias{namedList}
-\title{Create named list, possibly inititialized.}
+\title{Create named list, possibly initialized with a certain element.}
 \usage{
   namedList(names, init)
 }
@@ -15,7 +15,7 @@
   [\code{list}].
 }
 \description{
-  Create named list, possibly inititialized with a certain
+  Create named list, possibly initialized with a certain
   element.
 }
 \examples{

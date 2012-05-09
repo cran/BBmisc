@@ -1,5 +1,5 @@
 #' Prints object to a string / character vector.
-#' @title Prints object to a string / character vector.
+#' 
 #' @param x [any]\cr
 #'   Object to print
 #' @param collapse [\code{character(1)}]\cr

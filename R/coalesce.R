@@ -1,7 +1,8 @@
+#' Returns first non-missing, non-null argument.
+#' 
 #' Returns first non-missing, non-null argument, otherwise
 #' \code{NULL}.
 #'
-#' @title Returns first non-missing, non-null argument.
 #' @param ... [any]\cr
 #'   Arguments.    
 #' @return [any]. 

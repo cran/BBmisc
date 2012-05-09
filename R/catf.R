@@ -1,5 +1,7 @@
+#' Wrapper for cat and sprintf.
+#' 
 #' A simple wrapper for \code{cat(sprintf(...))}.
-#' @title Wrapper for cat and sprintf.
+#'
 #' @param ... [any]\cr
 #'   See \code{\link{sprintf}}.
 #' @param file [\code{character(1)}]\cr

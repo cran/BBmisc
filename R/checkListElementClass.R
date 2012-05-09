@@ -1,7 +1,9 @@
-#' Check that a list contains only elements of a required type. 
+#' Check that a list contains only elements of a required type.
+#' 
+#' Check that argument is a list and contains only elements of a required type. 
 #' Throws exception if check is not passed.
 #' Note that argument is evaluated when checked.
-#' @title Check that a list contains only elements of a required type.
+#' 
 #' @param xs [\code{list}]\cr
 #'   Argument.
 #' @param cl [\code{character(1)}]\cr
@@ -12,6 +14,7 @@
 #' xs <- as.list(1:3)
 #' checkListElementClass(xs, "numeric")
 checkListElementClass = function(xs, cl) {
+  checkArg(xs, "list")
   s = deparse(substitute(xs))
   sapply(seq_along(xs), function(i) {
     x = xs[[i]] 

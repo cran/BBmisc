@@ -1,10 +1,11 @@
-#' Requires packages that were only suggested.
+#' Require some packages.
+#' 
 #' If some packages could not be loaded and \code{stop} is \code{TRUE}
 #' the following exception is thrown:
 #' \dQuote{For <why> please install the following packages: <missing packages>}.
 #' If \code{why} is \code{NULL} the message is:
 #' \dQuote{Please install the following packages: <missing packages>}.
-#' @title Requires packages that were only suggested.
+#' 
 #' @param packs [\code{character}]\cr
 #'   Names of packages. 
 #' @param why [\code{character(1)}]\cr

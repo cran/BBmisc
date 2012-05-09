@@ -1,7 +1,8 @@
 #' Converts list to short string describing contents.
+#' 
 #' Looks like this \dQuote{a=1,<unamed>=2,b=<data.frame>}.
 #' Vectors are displayed till a certain length.
-#' @title Converts list to short string describing contents.
+#' 
 #' @param xs [\code{list}]\cr
 #'   The list. 
 #' @return [\code{character(1)}].

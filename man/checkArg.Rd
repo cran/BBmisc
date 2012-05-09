@@ -47,9 +47,8 @@
   Nothing.
 }
 \description{
-  Check for a function argument. Throws exception if checks
-  are not passed. Note that argument is evaluated when
-  checked.
+  Throws exception if checks are not passed. Note that
+  argument is evaluated when checked.
 }
 \examples{
 x <- 1L

@@ -1,6 +1,6 @@
 \name{requirePackages}
 \alias{requirePackages}
-\title{Requires packages that were only suggested.}
+\title{Require some packages.}
 \usage{
   requirePackages(packs, why = NULL, stop = TRUE,
     suppress.warnings = FALSE, ...)
@@ -26,8 +26,7 @@
   packages could be loaded.  Same length as \code{packs}.
 }
 \description{
-  Requires packages that were only suggested. If some
-  packages could not be loaded and \code{stop} is
+  If some packages could not be loaded and \code{stop} is
   \code{TRUE} the following exception is thrown:
   \dQuote{For <why> please install the following packages:
   <missing packages>}. If \code{why} is \code{NULL} the

@@ -2,15 +2,15 @@
 \alias{save2}
 \title{Save multiple objects to a file.}
 \usage{
-  save2(..., file, ascii = FALSE, version = NULL,
+  save2(file, ..., ascii = FALSE, version = NULL,
     compress = !ascii, compression_level,
     eval.promises = TRUE, precheck = TRUE)
 }
 \arguments{
+  \item{file}{File to save.}
+
   \item{...}{[\code{any}]\cr Will be converted to an
   environment and then passed to \code{\link[base]{save}}.}
-
-  \item{file}{See help of \code{\link[base]{save}}.}
 
   \item{ascii}{See help of \code{\link[base]{save}}.}
 

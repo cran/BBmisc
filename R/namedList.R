@@ -1,6 +1,5 @@
-#' Create named list, possibly inititialized with 
-#' a certain element.
-#' @title Create named list, possibly inititialized.
+#' Create named list, possibly initialized with a certain element.
+#' 
 #' @param names [\code{character}]\cr
 #'   Names of elements.
 #' @param init [valid R expression]\cr

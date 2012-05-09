@@ -1,7 +1,8 @@
-#' Check for a function argument. 
+#' Check for a function argument.
+#'  
 #' Throws exception if checks are not passed.
 #' Note that argument is evaluated when checked.
-#' @title Check for a function argument.
+#' 
 #' @param x [any]\cr
 #'   Argument.
 #' @param cl [\code{character(1)}]\cr

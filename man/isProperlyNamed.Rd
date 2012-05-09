@@ -11,7 +11,6 @@
   [\code{logical(1)}].
 }
 \description{
-  Are all elements of a list / vector uniquely named?
   \code{NA} or \dQuote{} are not allowed as names.
 }
 \examples{

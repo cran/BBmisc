@@ -14,9 +14,9 @@
   Nothing.
 }
 \description{
-  Check that a list contains only elements of a required
-  type. Throws exception if check is not passed. Note that
-  argument is evaluated when checked.
+  Check that argument is a list and contains only elements
+  of a required type. Throws exception if check is not
+  passed. Note that argument is evaluated when checked.
 }
 \examples{
 xs <- as.list(1:3)

@@ -1,0 +1,26 @@
+BBmisc_1.1-125:
+- removed stringr dependency
+- new interface for ProgressBar and more therefore more functionality 
+- some global options for progressbar behaviour
+- options immediate and warning.length for warningf
+- checkListElementClass now first checks that argument is a list
+- nin (notin) operator
+- parallelMap function, can delegate to multicore or snowfall
+- stringsAsFactors 
+- system3
+- load2
+
+BBmisc_1.0-77:
+- removed calls to .Internal
+
+BBmisc_1.0-74:
+- more examples
+- fixed a bug in checkArg
+- makeProgressbar: new option 'inc' to increment
+- stopf: new option warning.length
+- more options for requirePackages
+- new functions: chunk, isExpensiveExampleOk
+
+BBmisc_1.0-58: 
+- First submit to CRAN.
+

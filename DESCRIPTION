@@ -7,17 +7,20 @@ Author: Bernd Bischl <bernd_bischl@gmx.net>, Michel Lang
         <olafm@p-value.net>
 Maintainer: Bernd Bischl <bernd_bischl@gmx.net>
 License: BSD
-Depends: stringr
+Depends: methods
+Suggests: testthat, snowfall, multicore, Rmpi
 LazyData: yes
 ByteCompile: yes
-Version: 1.0-77
+Version: 1.1-125
 Collate: 'catf.R' 'checkArg.R' 'checkListElementClass.R' 'chunk.R'
         'coalesce.R' 'collapse.R' 'convertInteger.R' 'directory.R'
         'extractSubList.R' 'factor.R' 'insert.R' 'is_error.R'
         'isExpensiveExampleOk.R' 'isProperlyNamed.R'
-        'listToShortString.R' 'makeProgressBar.R' 'messagef.R'
-        'namedList.R' 'printToChar.R' 'requirePackages.R' 'save2.R'
-        'splitTime.R' 'stopf.R' 'suppressAll.R' 'warningf.R'
-Packaged: 2012-03-17 15:31:00 UTC; bischl
+        'listToShortString.R' 'load2.R' 'makeProgressBar.R'
+        'messagef.R' 'namedList.R' 'notin.R' 'parallel.R'
+        'printToChar.R' 'requirePackages.R' 'save2.R' 'splitTime.R'
+        'stopf.R' 'stringsAsFactors.R' 'suppressAll.R' 'system3.R'
+        'warningf.R' 'zzz.R'
+Packaged: 2012-05-09 23:09:54 UTC; bischl
 Repository: CRAN
-Date/Publication: 2012-03-17 15:57:48
+Date/Publication: 2012-05-10 04:14:50

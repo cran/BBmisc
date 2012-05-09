@@ -1,7 +1,6 @@
 \name{splitTime}
 \alias{splitTime}
-\title{Split seconds into handy chunks of time.
-Note that a year is simply defined as exactly 365 days.}
+\title{Split seconds into handy chunks of time.}
 \usage{
   splitTime(seconds,
     unit = c("years", "days", "hours", "minutes", "seconds"))
@@ -21,8 +20,7 @@ Note that a year is simply defined as exactly 365 days.}
   the given \code{unit} are \code{NA}.
 }
 \description{
-  Split seconds into handy chunks of time. Note that a year
-  is simply defined as exactly 365 days.
+  Note that a year is simply defined as exactly 365 days.
 }
 \examples{
 splitTime(1000)

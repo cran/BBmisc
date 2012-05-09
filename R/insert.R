@@ -1,6 +1,8 @@
+#' Insert elements from one list into another list.
+#' 
 #' Inserts elements from list \code{x2} into list \code{x1} by name,
 #' overwriting elements of equal names.
-#' @title Insert elements from one list into another list.
+#' 
 #' @param xs1 [\code{list}]\cr
 #'   First list. 
 #' @param xs2 [\code{list}]\cr
