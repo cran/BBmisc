@@ -29,10 +29,10 @@ system3 = function(command, args = character(), stdout = "", stderr = "", wait=T
         withCallingHandlers({
             op = system2(command=command, args=args, stdout=stdout, stderr=stderr, wait=wait, ...)
           }, warning = function(w) {
-            # get last integer in string, dont rely on words in message
-            # FIXME this was bugged for integers with more than one digit!!!!
-            # ec <<- as.integer(rev(str_extract_all(w$message, "\\d")[[1]])[1])
-            ec <<- as.integer(tail(regmatches(w$message, gregexpr("\\d+", w$message))[[1L]], 1L))
+            g = gregexpr("\\d+", w$message)[[1]]
+            start = tail(g, 1L)
+            len = tail(attr(g, "match.length"), 1)
+            ec <<- as.integer(substr(w$message, start, start + len - 1))
           })
       })
   } else {
@@ -45,6 +45,10 @@ system3 = function(command, args = character(), stdout = "", stderr = "", wait=T
   }
   if (stop.on.exit.code && ec > 0) {
     args = collapse(args, " ")
+    if (length(output) == 0)
+      output = ""
+    else
+      output = collapse(output, "\n")
     stopf("Command: %s %s; exit code: %i; output: %s", command, args, ec, output)
   }
   list(exit.code=exit.code, output=output)

@@ -32,6 +32,8 @@ test_that("system3", {
     "Command: ls xxx; exit code: 2; output: ls:")
   expect_error(system3("ls", "xxx", stdout=TRUE, stderr=TRUE, stop.on.exit.code=TRUE),
     "xxx")
+  expect_error(system3("ls", c("1", "2"), stdout=TRUE, stderr=TRUE, stop.on.exit.code=TRUE),
+    "Command: ls")
 })
   
 }

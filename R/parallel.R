@@ -194,6 +194,7 @@ slaveWrapper = function(.x, .fun, .log=NULL) {
   res = try(do.call(.fun, .x[-1]), silent = is.null(log))
 
   if (!is.null(.log)) {
+    # FIXME: should we close the file here?
     print(gc())
     sink(NULL)
   }  

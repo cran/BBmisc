@@ -1,3 +1,6 @@
+BBmisc_1.1-132:
+- removed regmatches dependency
+
 BBmisc_1.1-125:
 - removed stringr dependency
 - new interface for ProgressBar and more therefore more functionality 

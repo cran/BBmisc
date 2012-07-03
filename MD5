@@ -1,6 +1,6 @@
-d49f1ebcbd4c4649531e82abc9e744c7 *DESCRIPTION
-bf33e1f0660f3e400255edd8e6851237 *NAMESPACE
-59e1c2d387394aa1e058c09d88314a41 *NEWS
+63ca57b9c11ccf68efa81da1137b1eb3 *DESCRIPTION
+e89c2f5ad79fabbb986eb2649da73709 *NAMESPACE
+7899e9aee0d27be5f296cfd6d03f491e *NEWS
 a8689d6a8248077bb584b0f0ce853588 *R/catf.R
 2340516ea1b84ddb160354f472bc5590 *R/checkArg.R
 a909d2a8242c14cb4c7a1edf9d8b4d1e *R/checkListElementClass.R
@@ -21,7 +21,7 @@ f5b6c69d150f37b0afc10e17a9a91ec3 *R/makeProgressBar.R
 56ea5b40606ea6f08b27e81772fc301e *R/messagef.R
 e8113adc4512443f65db0988bd51fc9b *R/namedList.R
 e59b61d970002bfe743dd00874fc58c3 *R/notin.R
-685ea843f5144ba8bba8c2023a44615f *R/parallel.R
+89995e4d54d3642f4db5e96c9e6b7593 *R/parallel.R
 5c4a8fce3e1bf71d96c72ee303fe46b5 *R/printToChar.R
 01bb5f6a40244c1c63163965e4b53bcb *R/requirePackages.R
 376a450aa4812f9975c1cc0091f3f593 *R/save2.R
@@ -29,7 +29,7 @@ e59b61d970002bfe743dd00874fc58c3 *R/notin.R
 3207f8a2e851749c04e8b74a6284bd9b *R/stopf.R
 bc2b790a00dae2a6ccdc9bd916e4a340 *R/stringsAsFactors.R
 18366c8a042dd38325703588bd0918f3 *R/suppressAll.R
-7b95710c907a1b00a28e78e2298decf8 *R/system3.R
+618eca9258bbac88740c989f92521637 *R/system3.R
 c1e91dbbceb1fe57bea81d4df085fc79 *R/warningf.R
 ada140e00b600f319b77b4e995410f6d *R/zzz.R
 4ced6c9b57ebc27291114de0b08edc3b *inst/tests/test_checkArg.R
@@ -55,7 +55,7 @@ a2e08537878a42840f3e3720ca454dc7 *inst/tests/test_printf.R
 77801aec4508d71a41c399990da06e29 *inst/tests/test_splitTime.R
 0790b27efd4570d875ced883e66c6770 *inst/tests/test_stringsAsFactors.R
 52dca80f449488ef39061dab9bd30310 *inst/tests/test_suppressAll.R
-53b6774459ecb707175165d53ceb221c *inst/tests/test_system3.R
+f6c99819004299fe7d625f9c49117379 *inst/tests/test_system3.R
 03ce572dbe74a0450d2f362e2ad745f6 *man/cFactor.Rd
 b99d46c8bd13aa80b3ac7d7e3fb35ae3 *man/catf.Rd
 bd820214352c52e4968591c34f5dcfcd *man/checkArg.Rd
