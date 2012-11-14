@@ -2,8 +2,9 @@
 \alias{checkArg}
 \title{Check for a function argument.}
 \usage{
-  checkArg(x, cl, len, min.len, choices, subset,
-    lower = NA, upper = NA, na.ok = TRUE, formals)
+  checkArg(x, cl, s4 = FALSE, len, min.len, max.len,
+    choices, subset, lower = NA, upper = NA, na.ok = TRUE,
+    formals)
 }
 \arguments{
   \item{x}{[any]\cr Argument.}
@@ -11,11 +12,22 @@
   \item{cl}{[\code{character(1)}]\cr Class that argument
   must have. Checked with \code{is}.}
 
+  \item{s4}{[\code{logical(1)}]\cr If \code{TRUE}, use
+  \code{is} for checking class \code{cl}, otherwise use
+  \code{inherits}, which implies that onyl S3 classes are
+  correctly checked. This is done for speed reasons as
+  calling \code{is} is pretty slow.  Default is
+  \code{FALSE}.}
+
   \item{len}{[\code{integer(1)}]\cr Length that argument
   must have.  Not checked if not passed, which is the
   default.}
 
   \item{min.len}{[\code{integer(1)}]\cr Minimal length that
+  argument must have.  Not checked if not passed, which is
+  the default.}
+
+  \item{max.len}{[\code{integer(1)}]\cr Maximal length that
   argument must have.  Not checked if not passed, which is
   the default.}
 

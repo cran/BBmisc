@@ -1,7 +1,7 @@
 #' Wrapper for warning and sprintf.
-#' 
+#'
 #' A wrapper for \code{\link{warning}} with \code{\link{sprintf}} applied to the arguments.
-#' 
+#'
 #' @param ... [any]\cr
 #'   See \code{\link{sprintf}}.
 #' @param immediate [\code{logical(1)}]\cr
@@ -16,12 +16,12 @@
 #' @examples
 #' msg <- "a warning"
 #' warningf("this is %s", msg)
-warningf = function(..., immediate=TRUE, warning.length=8170) {
+warningf = function(..., immediate=TRUE, warning.length=8170L) {
   msg = sprintf(...)
   if (immediate) {
     old = getOption("warn")
     on.exit(options(warn=old))
-    options(warn=1)
+    options(warn=1L)
   }
   obj = simpleWarning(msg, call=sys.call(sys.parent()))
   warning(obj)

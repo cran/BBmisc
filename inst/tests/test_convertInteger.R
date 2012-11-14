@@ -22,4 +22,5 @@ test_that("convertIntegers", {
   expect_true(identical(convertIntegers(as.integer(c(NA, NA))), as.integer(c(NA, NA))))
   expect_true(identical(convertIntegers(as.numeric(c(NA, NA))), as.integer(c(NA, NA))))
   expect_true(identical(convertIntegers(c(1, NA)), as.integer(c(1, NA))))  
+  expect_true(identical(convertIntegers(c()), integer()))
 })

@@ -57,24 +57,29 @@
 #' }
 #' }
 makeProgressBar = function(min=0, max=100, label="", char="+") {
-  checkArg(min, "numeric", len=1, na.ok=FALSE)
-  checkArg(max, "numeric", len=1, na.ok=FALSE)
-  checkArg(label, "character", len=1, na.ok=FALSE)
+  checkArg(min, "numeric", len=1L, na.ok=FALSE)
+  checkArg(max, "numeric", len=1L, na.ok=FALSE)
+  checkArg(label, "character", len=1L, na.ok=FALSE)
 
   style = getOption("BBmisc.ProgressBar.style", "text")
-  if (!is.character(style) || length(style) > 1 || !(style %in% c("text", "off")))
+  if (!is.character(style) || length(style) > 1L || !(style %in% c("text", "off")))
     stop("BBmisc.ProgressBar.style option must be one of: 'text', 'off'!")
   if (style == "off")
-    return(function(...) invisible(NULL))
+    return(structure(list(
+      set = function(value, msg=label) invisible(NULL),
+      inc = function(inc, msg=label) invisible(NULL),
+      kill =  function(clear=FALSE) invisible(NULL),
+      error = function(e) stop(e)
+    ), class = "ProgressBar"))
   width = getOption("BBmisc.ProgressBar.width", getOption("width"))
   width = convertInteger(width)
-  if (!is.integer(width) || length(width) != 1 || is.na(width) || width <= 0)
-    stop("BBmisc.ProgressBar.width option must be a positive integer!")
+  if (!is.integer(width) || length(width) != 1 || is.na(width) || width <= 0L || width < 30L)
+    stop("BBmisc.ProgressBar.width option must be a positive integer >= 30!")
   if (style == "off")
     return(function(...) invisible(NULL))
   ## label |................................| xxx% (hh:mm:ss)
   label.width = nchar(label)
-  bar.width = width - label.width - 21
+  bar.width = width - label.width - 21L
   bar = rep(" ", bar.width)
 
   start.time = as.integer(Sys.time())
@@ -86,9 +91,9 @@ makeProgressBar = function(min=0, max=100, label="", char="+") {
     if (!missing(value) && !missing(inc))
       stop("You must not set value and inc!")
     else if (!missing(value))
-      checkArg(value, "numeric", len=1, na.ok=FALSE, lower=max(min,cur.value), upper=max)
+      checkArg(value, "numeric", len=1L, na.ok=FALSE, lower=max(min,cur.value), upper=max)
     else if (!missing(inc)) {
-      checkArg(inc, "numeric", len=1, na.ok=FALSE, lower=0, upper=max-cur.value)
+      checkArg(inc, "numeric", len=1L, na.ok=FALSE, lower=0, upper=max-cur.value)
       value = cur.value + inc
     } else {
       value = cur.value

@@ -16,9 +16,14 @@
 convertInteger = function(x) {
   if (is.integer(x) || length(x) != 1L)
     return(x)
-  if (is.na(x) || (is.numeric(x) && isTRUE(all.equal(x, as.integer(x)))))
+  if (is.na(x))
     return(as.integer(x))
-  return(x)
+  if (is.numeric(x)) {
+    xi = as.integer(x)
+    if (isTRUE(all.equal(x, xi)))
+      return(xi)
+  }
+  return(x)    
 }
 
 #' Conversion for integer vector.
@@ -40,8 +45,12 @@ convertInteger = function(x) {
 convertIntegers = function(x) {
   if (is.integer(x))
     return(x)
-  if ((is.atomic(x) && all(is.na(x))) ||
-      (is.numeric(x) && isTRUE(all.equal(x, as.integer(x)))))
+  if (length(x) == 0L || (is.atomic(x) && all(is.na(x))))
     return(as.integer(x))
-  return(x)
+  if (is.numeric(x)) {
+    xi = as.integer(x)
+    if (isTRUE(all.equal(x, xi)))
+      return(xi)
+  }
+  return(x)    
 }

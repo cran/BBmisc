@@ -2,7 +2,7 @@
 \alias{stopf}
 \title{Wrapper for stop and sprintf.}
 \usage{
-  stopf(..., warning.length = 8170)
+  stopf(..., warning.length = 8170L)
 }
 \arguments{
   \item{...}{[any]\cr See \code{\link{sprintf}}.}

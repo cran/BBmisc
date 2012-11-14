@@ -11,7 +11,6 @@ partest1 = function() {
   expect_equal(parallelMap(f, 1:2, 2:3), list(3, 5))
   
   expect_equal(parallelMap(identity, 1:2), list(1, 2), level="foo")
-  
 }
 
 partest2 = function(log.dir) {
@@ -51,6 +50,13 @@ partest2 = function(log.dir) {
   check.contains(c("xxx", "yyy"))
 }
 
+partest3 = function() {
+  f = function(i) 
+    i + parallelGetExported("foo")
+  foo = 100  
+  parallelExport("foo")  
+  expect_equal(parallelMap(f, 1:2), list(101, 102))
+}
 
 test_that("parallel local", {
   parallelStart(mode="local")
@@ -58,6 +64,9 @@ test_that("parallel local", {
   expect_error(parallelStart(mode="local", cpus=2))
   parallelStart(mode="local", level="foo")
   expect_error(parallelStart(mode="local", log=tempdir()))
+  partest1()
+  partest3()
+  parallelStop()
 })
 
 if (interactive()) {
@@ -67,6 +76,7 @@ if (interactive()) {
     parallelStop()
     
     expect_error(parallelStart(mode="multicore", log="xxx"))    
+
     parallelStart(mode="multicore", log=tempdir())
     partest2(tempdir())
     parallelStop()
@@ -79,6 +89,14 @@ if (interactive()) {
 
     parallelStart(mode="snowfall", cpus=2, type="MPI")
     partest1()
+    parallelStop()
+    
+    parallelStart(mode="snowfall", cpus=2, log=tempdir())
+    partest2(tempdir())
+    parallelStop()
+    
+    parallelStart(mode="snowfall", cpus=2)
+    partest3()
     parallelStop()
   })
 }

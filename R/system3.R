@@ -15,7 +15,7 @@
 #' @return [\code{list}].
 #'   \item{exit.code [integer(1)]}{Exit code of command. Given if wait is \code{TRUE}, otherwise \code{NA}. 0L means success. 127L means command was not found}
 #'   \item{output [character]}{Output of command on streams. Only given is \code{stdout} or \code{stderr} was set to \code{TRUE}, otherwise \code{NA}.}
-#' @export 
+#' @export
 system3 = function(command, args = character(), stdout = "", stderr = "", wait=TRUE, ..., stop.on.exit.code=wait) {
   if (stop.on.exit.code && !wait)
     stopf("stop.on.exit.code is TRUE but wait is FALSE!")
@@ -39,17 +39,16 @@ system3 = function(command, args = character(), stdout = "", stderr = "", wait=T
     ec = system2(command=command, args=args, stdout=stdout, stderr=stderr, wait=wait, ...)
   }
   if (wait) {
-    exit.code = ec
     if (isTRUE(stdout) || isTRUE(stderr))
       output = op
   }
-  if (stop.on.exit.code && ec > 0) {
+  if (stop.on.exit.code && ec > 0L) {
     args = collapse(args, " ")
-    if (length(output) == 0)
+    if (length(output) == 0L)
       output = ""
     else
       output = collapse(output, "\n")
     stopf("Command: %s %s; exit code: %i; output: %s", command, args, ec, output)
   }
-  list(exit.code=exit.code, output=output)
+  list(exit.code=ec, output=output)
 }

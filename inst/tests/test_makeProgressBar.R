@@ -30,3 +30,21 @@ test_that("makeProgressBar", {
   bar = makeProgressBar(min=0, max=0)
   bar$inc(0)
 })
+
+test_that("makeProgressBar global options", {
+  old.style = getOption("BBmisc.ProgressBar.style")
+  old.width = getOption("BBmisc.ProgressBar.width")
+  options(BBmisc.ProgressBar.style = "off")
+  cat("\n")
+  bar = makeProgressBar(max=5)
+  for(i in 0:5) { 
+     expect_output(bar$set(i), "^$")
+  }
+  options(BBmisc.ProgressBar.style = "text", BBmisc.ProgressBar.width = 30)
+  cat("\n")
+  bar = makeProgressBar(max=5)
+  for(i in 0:5) { 
+     bar$set(i)
+  }
+  options(BBmisc.ProgressBar.style = old.style, BBmisc.ProgressBar.width = old.width)
+})

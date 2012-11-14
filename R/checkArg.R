@@ -7,11 +7,19 @@
 #'   Argument.
 #' @param cl [\code{character(1)}]\cr
 #'   Class that argument must have. Checked with \code{is}.
+#' @param s4 [\code{logical(1)}]\cr
+#'   If \code{TRUE}, use \code{is} for checking class \code{cl}, otherwise use \code{inherits}, which 
+#'   implies that onyl S3 classes are correctly checked. This is done for speed reasons
+#'   as calling \code{is} is pretty slow. 
+#'   Default is \code{FALSE}.
 #' @param len [\code{integer(1)}]\cr
 #'   Length that argument must have. 
 #'   Not checked if not passed, which is the default.
 #' @param min.len [\code{integer(1)}]\cr
 #'   Minimal length that argument must have. 
+#'   Not checked if not passed, which is the default.
+#' @param max.len [\code{integer(1)}]\cr
+#'   Maximal length that argument must have. 
 #'   Not checked if not passed, which is the default.
 #' @param choices [any]\cr
 #'   Discrete number of choices, expressed by a vector of R objects.
@@ -46,7 +54,7 @@
 #' checkArg(x, subset=c("foo", "bar"))
 #' fun <- function(foo, bar)
 #' checkArg(fun, formals=c("foo", "bar"))
-checkArg = function(x, cl, len, min.len, choices, subset, lower=NA, upper=NA, na.ok = TRUE, formals) {
+checkArg = function(x, cl, s4=FALSE, len, min.len, max.len, choices, subset, lower=NA, upper=NA, na.ok=TRUE, formals) {
   s = deparse(substitute(x))
   if (missing(x))
     stop("Argument ", s, " must not be missing!")
@@ -67,12 +75,23 @@ checkArg = function(x, cl, len, min.len, choices, subset, lower=NA, upper=NA, na
     if (length(fs) < length(formals) || !all(formals == fs[seq_along(formals)]))
       stop("Argument function must have first formal args: ", paste(formals, collapse=","), "!")
   } else {
-    if (!is(x, cl))
+    mycheck = 
+      if(identical(cl, "numeric"))
+        is.numeric
+      else if(identical(cl, "integer"))
+        is.integer
+      else if (!s4)
+        function(x) inherits(x, cl)
+      else if (s4) 
+        function(x) is(x, cl)
+    if (!mycheck(x))
       stop("Argument ", s, " must be of class ", cl, " not: ", cl2, "!")
     if (!missing(len) && len2 != len)
       stop("Argument ", s, " must be of length ", len, " not: ", len2, "!")
     if (!missing(min.len) && len2 < min.len)
       stop("Argument ", s, " must be at least of length ", min.len, " not: ", len2, "!")
+    if (!missing(max.len) && len2 > max.len)
+      stop("Argument ", s, " must be at most of length ", max.len, " not: ", len2, "!")
     if (!na.ok && any(is.na(x)))
       stop("Argument ", s, " must not contain any NAs!")
     if (is.numeric(x) && !is.na(lower) && ((is.na(x) && !na.ok) || (!is.na(x) && x < lower)))

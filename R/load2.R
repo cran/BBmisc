@@ -13,7 +13,7 @@
 #'   Assign objects to this environment.
 #'   Default is not to assign.
 #' @return Either a single object or a list.
-#' @export 
+#' @export
 #' @examples
 #' fn <- tempfile()
 #' save2(file=fn, a=1, b=2, c=3)
@@ -25,7 +25,7 @@ load2 = function(file, parts, simplify=TRUE, envir) {
   ns = ls(ee)
   if (!missing(parts)) {
     d = setdiff(parts, ns)
-    if (length(d) > 0)
+    if (length(d) > 0L)
       stopf("File %s does not contain: %s", file, collapse(d))
   } else {
     parts = ns
@@ -34,10 +34,10 @@ load2 = function(file, parts, simplify=TRUE, envir) {
     lapply(ns, function(x) assign(x, ee[[x]], envir=envir))
   }
   if (simplify) {
-    if (length(ns) == 1)
+    if (length(ns) == 1L)
       return(ee[[ns]])
-    if (length(parts) == 1)
+    if (length(parts) == 1L)
       return(ee[[parts]])
-  } 
+  }
   mget(parts, envir=ee)
 }

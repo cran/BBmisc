@@ -1,9 +1,9 @@
 #' Check that a list contains only elements of a required type.
-#' 
-#' Check that argument is a list and contains only elements of a required type. 
+#'
+#' Check that argument is a list and contains only elements of a required type.
 #' Throws exception if check is not passed.
 #' Note that argument is evaluated when checked.
-#' 
+#'
 #' @param xs [\code{list}]\cr
 #'   Argument.
 #' @param cl [\code{character(1)}]\cr
@@ -17,9 +17,9 @@ checkListElementClass = function(xs, cl) {
   checkArg(xs, "list")
   s = deparse(substitute(xs))
   sapply(seq_along(xs), function(i) {
-    x = xs[[i]] 
+    x = xs[[i]]
     if(!(is(x, cl)))
-      stop("List ", s, " has element of wrong type ", class(x)[1], " at position ", i, ". Should be: ", cl)
-  })  
+      stop("List ", s, " has element of wrong type ", class(x)[1L], " at position ", i, ". Should be: ", cl)
+  })
   invisible(NULL)
 }

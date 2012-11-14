@@ -2,7 +2,7 @@
 \alias{warningf}
 \title{Wrapper for warning and sprintf.}
 \usage{
-  warningf(..., immediate = TRUE, warning.length = 8170)
+  warningf(..., immediate = TRUE, warning.length = 8170L)
 }
 \arguments{
   \item{...}{[any]\cr See \code{\link{sprintf}}.}

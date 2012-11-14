@@ -88,27 +88,81 @@ parallelStop = function() {
   mode = getOption("BBmisc.parallel.mode")
   if (mode == "snowfall")
     sfStop()
+  options(BBmisc.parallel.mode = "local")  
 }
 
-# FIXME: do parallel export efficiently
-#parallelExport = function(...) {
+# parallelExport = function(...) {
 #  mode = getOption("BBmisc.parallel.mode")
-#	# multicore does not require to export because mem is duplicated after fork (still copy-on-write)
-#	if (mode == "snowfall") {
+# 	# multicore does not require to export because mem is duplicated after fork (still copy-on-write)
+# 	if (mode == "snowfall") {
 #    args = list(...) 
 #    ns = names(args)
 #    for (i in seq_along(args)) {
-#      name = ns[i]
-#      obj = args[[i]]
-#      hash = digest(c(digest(name), digest(obj)))
-#      if (!exists(hash, envir=.BBmisc.parallel.hashes)) { 
-#        assign(hash, TRUE, env=.BBmisc.parallel.hashes)
-#       sfClusterCall(assign, name, obj, env=globalenv())
-#      }
-#    }
-#	}
-#}
+#       name = ns[i]
+#       obj = args[[i]]
+#       hash = digest(c(digest(name), digest(obj)))
+#       if (!exists(hash, envir=.BBmisc.parallel.hashes)) { 
+#         assign(hash, TRUE, envir=.BBmisc.parallel.hashes)
+#        sfClusterCall(assign, name, obj, envir=globalenv())
+#       }
+#     }
+# 	}
+# }
 
+#' Retrieve a with \code{\link{parallelExport}} exported in slave code.
+#'
+#' @param name [\code{character(1)}]\cr
+#'   Name of exported object.
+#' @return [any]. Object value.
+#' @export
+parallelGetExported = function(name) {
+  penv = getOption("BBmisc.parallel.export.env")
+  if (penv == ".BBmisc.parallel.export.env") 
+    get(name, envir=.BBmisc.parallel.export.env)
+  else 
+    get(name, envir=.GlobalEnv)
+}
+
+#' Export a larger object which is needed in slave code of \code{\link{parallelMap}}.
+#'
+#' Objects can later be retrieved with \code{\link{parallelGetExported}} in slave code.
+#' 
+#' For local and multicore mode the objects are stored in a package environment, 
+#' for snowfall \code{\link[snowfall]{sfExport}} is used internally.
+#'
+#' @param ... [\code{character(1)}]\cr
+#'   Names of object to export.
+#' @param list [list of \code{character(1)}]\cr
+#'   Names of objects to export.
+#'   Alternative way to pass arguments.
+#' @return Nothing.
+#' @export
+#' @examples
+#' foo <- 100
+#' f <- function(x) x + parallelGetExported("foo")
+#' parallelStart(mode="local")
+#' parallelExport("foo")
+#' y <- parallelMap(f, 1:3)
+#' parallelStop()
+parallelExport = function(..., list=character(0)) {
+  args = list(...)
+  checkListElementClass(args, "character")
+  checkArg(list, "character", na.ok=FALSE)
+  ns = union(unlist(args), list)
+  mode = getOption("BBmisc.parallel.mode")
+  
+  if (mode %in% c("local", "multicore")) {
+    # multicore does not require to export because mem is duplicated after fork (still copy-on-write)
+    options(BBmisc.parallel.export.env = ".BBmisc.parallel.export.env")  
+    for (n in ns) {
+      assign(n, get(n, envir=sys.parent()), envir=.BBmisc.parallel.export.env)
+    }
+  }  else if (mode == "snowfall") {
+    sfExport(list=ns)
+    #sfClusterEval(options(BBmisc.parallel.export.env = ".GlobalEnv"))
+  }
+  invisible(NULL)
+}
 
 #' Maps a function over lists or vectors in parallel.
 #'
@@ -116,8 +170,8 @@ parallelStop = function() {
 #' \code{\link{parallelStart}}. For multicore \code{\link[multicore]{mclapply}}
 #' is used, for snowfall \code{\link[snowfall]{sfClusterApplyLB}}.
 #' 
-#' Currently some options for more efficient exporting of arguments to
-#' slaves for snowfall are missing, will be included in next version.
+#' Large objects should be separately exported via \code{\link{parallelExport}}, 
+#' they can be retrieved in slave code via \code{\link{parallelGetExported}}.
 #'
 #' @param fun [\code{function}]\cr
 #'   Function to map over \code{...}.
@@ -149,10 +203,11 @@ parallelMap = function(fun, ..., more.args=list(), simplify=FALSE, use.names=FAL
   cpus = getOption("BBmisc.parallel.cpus")
   lev = getOption("BBmisc.parallel.level")
   log = getOption("BBmisc.parallel.log")
-  if (mode == "local" || (!is.na(lev) && !is.na(level) && level==lev)) {
+  
+  if (mode == "local" || (!is.na(lev) && !is.na(level) && level != lev)) {
+    options(BBmisc.parallel.export.env = ".BBmisc.parallel.export.env")  
     res = mapply(fun, ..., MoreArgs=more.args, SIMPLIFY=FALSE, USE.NAMES=FALSE)
   } else {
-    #parallelExport(...)    
     iters = seq_along(..1)
     toList = function(...) {
       Map(function(iter, ...) {
@@ -160,18 +215,14 @@ parallelMap = function(fun, ..., more.args=list(), simplify=FALSE, use.names=FAL
       }, iters, ...)
     }
     if (mode == "multicore") {
+      options(BBmisc.parallel.export.env = ".BBmisc.parallel.export.env")  
       res = multicore::mclapply(toList(...), FUN=slaveWrapper, .fun=fun, .log=log)
     }  else if (mode == "snowfall") {
+      sfClusterEval(options(BBmisc.parallel.export.env = ".GlobalEnv"))
+      sfClusterCall(assign, "parallelGetExported", parallelGetExported, envir=globalenv())
       res = sfClusterApplyLB(toList(...), fun=slaveWrapper, .fun=fun, .log=log)
     }
   }
-
-  lapply(seq_along(res), function(i) {
-    x = res[[i]]
-    if (is.error(x)) {
-      stopf("On slave %i: %s", i, as.character(x))
-    }
-  })
   
   if (use.names && (is.character(..1) || is.integer(..1))) {
     names(res) = ..1
@@ -191,10 +242,9 @@ slaveWrapper = function(.x, .fun, .log=NULL) {
     sink(fn, type="message")
   }  
 
-  res = try(do.call(.fun, .x[-1]), silent = is.null(log))
+  res = do.call(.fun, .x[-1])
 
   if (!is.null(.log)) {
-    # FIXME: should we close the file here?
     print(gc())
     sink(NULL)
   }  

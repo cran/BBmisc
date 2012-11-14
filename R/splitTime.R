@@ -1,5 +1,5 @@
 #' Split seconds into handy chunks of time.
-#' 
+#'
 #' Note that a year is simply defined as exactly 365 days.
 #'
 #' @param seconds [\code{numeric(1)}]\cr
@@ -16,9 +16,10 @@
 #' splitTime(1000)
 splitTime = function(seconds,
                       unit=c("years", "days", "hours", "minutes", "seconds")) {
+  seconds = convertInteger(seconds)
   unit = match.arg(unit)
-  res = c(years=NA, days=NA, hours=NA, minutes=NA, seconds=NA)
-  divider = c(31536000, 86400, 3600, 60, 1)
+  divider = c(31536000L, 86400L, 3600L, 60L, 1L)
+  res = setNames(rep(NA_integer_, 5L), c("years", "days", "hours", "minutes", "seconds"))
   start = which(names(res) == unit)
   for (i in start:length(divider)) {
     res[i] = seconds %/% divider[i]

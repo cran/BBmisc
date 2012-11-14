@@ -1,5 +1,5 @@
 #' Create named list, possibly initialized with a certain element.
-#' 
+#'
 #' @param names [\code{character}]\cr
 #'   Names of elements.
 #' @param init [valid R expression]\cr
@@ -18,6 +18,5 @@ namedList = function(names, init) {
     xs = vector("list", n)
   else
     xs = replicate(n, init, simplify=FALSE)
-  names(xs) = names
-  return(xs)
+  setNames(xs, names)
 }

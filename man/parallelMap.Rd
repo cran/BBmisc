@@ -39,9 +39,9 @@
   \code{\link[snowfall]{sfClusterApplyLB}}.
 }
 \details{
-  Currently some options for more efficient exporting of
-  arguments to slaves for snowfall are missing, will be
-  included in next version.
+  Large objects should be separately exported via
+  \code{\link{parallelExport}}, they can be retrieved in
+  slave code via \code{\link{parallelGetExported}}.
 }
 \examples{
 parallelStart()

@@ -1,9 +1,9 @@
 #' Are all elements of a list / vector uniquely named?
-#'  
+#'
 #' \code{NA} or \dQuote{} are not allowed as names.
-#' 
+#'
 #' @param x [\code{vector}]\cr
-#'   The vector or list. 
+#'   The vector or list.
 #' @return [\code{logical(1)}].
 #' @export
 #' @examples
@@ -12,6 +12,6 @@
 #' isProperlyNamed(list(a=1, 2))
 isProperlyNamed = function(x) {
   ns = names(x)
-  (length(x) == 0) ||
-    ! (is.null(ns) || length(x) != length(ns) || any(is.na(ns) | ns == "") || any(duplicated(ns)))
+  (length(x) == 0L) ||
+  ! (length(x) != length(ns) || any(is.na(ns) | ns == "") || anyDuplicated(ns) > 0L)
 }
