@@ -1,9 +1,9 @@
-028d913172718815bd5cd63fde25ee1a *DESCRIPTION
+b7add585878e405335c298a4d49db6ca *DESCRIPTION
 4f2a70d649b47081eb9adf2a974ce732 *NAMESPACE
-cae8d03887ba501ed362c042afcbe74c *NEWS
+18303ae0f7c0b91cafa116051e81ad90 *NEWS
 79323160f574304876296aace4dfc819 *R/addClasses.R
 a8689d6a8248077bb584b0f0ce853588 *R/catf.R
-db71b1dcf34d67f4b5aa74876fddeac4 *R/checkArg.R
+3b4b119d27b63ac0ff026c34015a8c10 *R/checkArg.R
 9edc5249ff4dd4e4746be21b0c5f684a *R/checkListElementClass.R
 9da994f561572a8cbd0275453c2fa494 *R/chunk.R
 eb2d50273c77daf0adc04bc261af347f *R/coalesce.R
@@ -39,7 +39,7 @@ bc2b790a00dae2a6ccdc9bd916e4a340 *R/stringsAsFactors.R
 395d64adbb636a023943461317d8c4d8 *R/warningf.R
 5884eb1a69a148f5d9d50579ba06a9a9 *R/zzz.R
 5989b96cdbdb24092fe473cb0ad9ccb4 *inst/tests/test_addClasses.R
-74d035bbdf6decec8089a8086b66ea10 *inst/tests/test_checkArg.R
+a20516817deded8a63bdd5f853e67061 *inst/tests/test_checkArg.R
 2889c8b5c4cff66c5a31b953545c2d86 *inst/tests/test_checkListElementClass.R
 8aacf4b5588697fea54980b6ebd69966 *inst/tests/test_chunk.R
 ebb9e6781113b660d3446720a4124622 *inst/tests/test_coalesce.R

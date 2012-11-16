@@ -1,4 +1,4 @@
-BBmisc_1.1-164:
+BBmisc_1.1-166:
 - some small fixes and added arguments
 - new functions:
 -- setRowNames, setColNames

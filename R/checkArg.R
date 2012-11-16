@@ -80,6 +80,8 @@ checkArg = function(x, cl, s4=FALSE, len, min.len, max.len, choices, subset, low
         is.numeric
       else if(identical(cl, "integer"))
         is.integer
+      else if(identical(cl, "vector"))
+        is.vector
       else if (!s4)
         function(x) inherits(x, cl)
       else if (s4) 

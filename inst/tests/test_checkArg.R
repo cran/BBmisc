@@ -31,6 +31,13 @@ test_that("checkArg", {
   expect_error(f(1), "must be of class function not: numeric")
   expect_error(f(function(blubb) 1), "must have first formal args")
   expect_error(f(function(foo) 1), "must have first formal args")
+  
+  checkArg(1, "vector")
+  checkArg(1L, "vector")
+  checkArg(TRUE, "vector")
+  checkArg("a", "vector")
+  checkArg(list(), "vector")
+  checkArg(list(1), "vector")
 })
 
 
