@@ -1,6 +1,6 @@
 #' Save multiple objects to a file.
 #'
-#' A simple wrapper for \code{save}. Understands key = value syntax to save
+#' A simple wrapper for \code{\link[base]{save}}. Understands key = value syntax to save
 #' objects using arbitrary variable names. All options of \code{\link[base]{save}},
 #' except \code{list} and \code{envir}, are available and passed to
 #' \code{\link[base]{save}}.
@@ -28,24 +28,7 @@
 #' save2(y=x, file=tempfile())
 save2 = function(file, ..., ascii = FALSE, version = NULL, compress = !ascii,
   compression_level, eval.promises = TRUE, precheck = TRUE) {
-
-  args = list(...)
-  nargs = length(args)
-  ns = names(args)
-  if (is.null(ns)) {
-    ns = character(nargs)
-    ns.missing = rep(TRUE, nargs)
-  } else {
-    ns.missing = (ns == "")
-  }
-  if(any(ns.missing)) {
-    ns.sub = as.character(substitute(deparse(...)))[-1L]
-    ns[ns.missing] = ns.sub[ns.missing]
-    names(args) = ns
-  }
-
-  ee = tryCatch(as.environment(args),
-    error = function(e) stopf("Unable to convert to environment (%s)", as.character(e)))
-  save(list = ns, envir = ee, file = file, ascii = ascii, version = version, compress = compress,
+  args = tryCatch(as.environment(argsAsNamedList(...)), error = function(e) stopf("Unable to convert to environment (%s)", as.character(e)))
+  save(list = ls(args), envir = args, file = file, ascii = ascii, version = version, compress = compress,
        compression_level = compression_level, eval.promises = eval.promises, precheck = precheck)
 }

@@ -35,10 +35,11 @@
 }
 \description{
   Defines the underlying parallelization mode (currently
-  multicore or snowfall) for \code{\link{parallelMap}} and
-  allows to set a \dQuote{level} of parallelization. Only
-  calls to \code{\link{parallelMap}} with a matching level
-  are parallelized.
+  parallel/multicore or snowfall) for
+  \code{\link{parallelMap}} and allows to set a
+  \dQuote{level} of parallelization. Only calls to
+  \code{\link{parallelMap}} with a matching level are
+  parallelized.
 }
 \details{
   For snowfall \code{\link[snowfall]{sfStop}},

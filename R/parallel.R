@@ -1,6 +1,6 @@
 #' Parallelization setup for parallelMap.
 #'
-#' Defines the underlying parallelization mode (currently multicore or snowfall) for
+#' Defines the underlying parallelization mode (currently parallel/multicore or snowfall) for
 #' \code{\link{parallelMap}} and allows to set a \dQuote{level} of parallelization. 
 #' Only calls to \code{\link{parallelMap}} with a matching level are parallelized. 
 #'
@@ -32,7 +32,7 @@ parallelStart = function(mode="local", cpus, ..., level=as.character(NA), log=NU
    
   if (missing(cpus)) {
     if (mode == "multicore")
-      cpus = multicore:::detectCores()
+      cpus = parallel::detectCores()
     else if(mode=="snowfall" && type=="MPI")
       cpus = Rmpi::mpi.universe.size()
     else 
@@ -56,7 +56,7 @@ parallelStart = function(mode="local", cpus, ..., level=as.character(NA), log=NU
   
   type = coalesce(..., "SOCK")
   packs = if (mode == "multicore")
-    "multicore"
+    "parallel"
   else if (mode == "snowfall")
     if (type == "MPI")
       c("snowfall", "Rmpi")
@@ -167,12 +167,17 @@ parallelExport = function(..., list=character(0)) {
 #' Maps a function over lists or vectors in parallel.
 #'
 #' Use the parallelization mode and the other options set in 
-#' \code{\link{parallelStart}}. For multicore \code{\link[multicore]{mclapply}}
+#' \code{\link{parallelStart}}. For parallel/multicore \code{\link[parallel]{mclapply}}
 #' is used, for snowfall \code{\link[snowfall]{sfClusterApplyLB}}.
 #' 
 #' Large objects should be separately exported via \code{\link{parallelExport}}, 
 #' they can be retrieved in slave code via \code{\link{parallelGetExported}}.
 #'
+#' Note that there is a bug in \code{\link[parallel]{mclapply}} of parallel because exceptions raised
+#' during slave calls are not corretly converted to try-errror objects (as claimed in the documentation) but
+#' instead a warning is generated. Because of this, \code{parallelMap} does not generate an exception in this
+#' case either.
+#' 
 #' @param fun [\code{function}]\cr
 #'   Function to map over \code{...}.
 #' @param ... [any]\cr
@@ -216,14 +221,17 @@ parallelMap = function(fun, ..., more.args=list(), simplify=FALSE, use.names=FAL
     }
     if (mode == "multicore") {
       options(BBmisc.parallel.export.env = ".BBmisc.parallel.export.env")  
-      res = multicore::mclapply(toList(...), FUN=slaveWrapper, .fun=fun, .log=log)
+      res = parallel::mclapply(toList(...), FUN=slaveWrapper, mc.cores=cpus, mc.allow.recursive=FALSE, .fun=fun, .log=log)
+      inds.err = sapply(res, is.error)
+      if (any(inds.err))
+        stop(collapse(c("\n", sapply(res[inds.err], as.character), sep="\n")))
     }  else if (mode == "snowfall") {
       sfClusterEval(options(BBmisc.parallel.export.env = ".GlobalEnv"))
       sfClusterCall(assign, "parallelGetExported", parallelGetExported, envir=globalenv())
       res = sfClusterApplyLB(toList(...), fun=slaveWrapper, .fun=fun, .log=log)
     }
   }
-  
+
   if (use.names && (is.character(..1) || is.integer(..1))) {
     names(res) = ..1
   }
@@ -243,7 +251,6 @@ slaveWrapper = function(.x, .fun, .log=NULL) {
   }  
 
   res = do.call(.fun, .x[-1])
-
   if (!is.null(.log)) {
     print(gc())
     sink(NULL)

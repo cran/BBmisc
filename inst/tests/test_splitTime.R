@@ -22,5 +22,8 @@ test_that("splitTime", {
   expect_equal(splitTime(seconds, "minutes"),
                c(years=NA, days=NA, hours=NA, minutes=2 * 365 * 24 * 60, seconds=0))
   expect_equal(splitTime(seconds, "seconds"),
-               c(years=NA, days=NA, hours=NA, minutes=NA, seconds=seconds))  
+               c(years=NA, days=NA, hours=NA, minutes=NA, seconds=seconds))
+
+  #FIXME: i dont get this test, shouldnt it be an error?
+	#expect_true(is.integer(splitTime(1000000000000, "minutes")))
 })

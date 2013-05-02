@@ -12,7 +12,6 @@
 #' or \dQuote{off}, which display no bars at all.
 #' You can globally change the width of all bars by setting the option
 #' \code{options(BBmisc.ProgressBar.width)}. By default this is \code{getOption("width")}.
-#' or \dQuote{off}, which display no bars at all.
 #'
 #' @param min [\code{numeric(1)}]\cr
 #'   Minimum value, default is 0.
@@ -20,7 +19,7 @@
 #'   Maximum value, default is 100.
 #' @param label [\code{character(1)}]\cr
 #'   Label shown in front of the progress bar.
-#'   Note, that if you later set \code{msg} in the progress bar function,
+#'   Note that if you later set \code{msg} in the progress bar function,
 #'   the message will be left-padded to the length of this label, therefore
 #'   it should be at least as long as the longest message you want to display.
 #'   Default is \dQuote{}.

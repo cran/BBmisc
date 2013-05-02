@@ -9,15 +9,17 @@
 \arguments{
   \item{x}{[any]\cr Argument.}
 
-  \item{cl}{[\code{character(1)}]\cr Class that argument
-  must have. Checked with \code{is}.}
+  \item{cl}{[\code{character}]\cr Class that argument must
+  \dQuote{inherit} from.  If multiple classes are given,
+  \code{x} must \dQuote{inherit} from at least one of
+  these.  See also argument \code{s4}.}
 
   \item{s4}{[\code{logical(1)}]\cr If \code{TRUE}, use
   \code{is} for checking class \code{cl}, otherwise use
-  \code{inherits}, which implies that onyl S3 classes are
-  correctly checked. This is done for speed reasons as
-  calling \code{is} is pretty slow.  Default is
-  \code{FALSE}.}
+  \code{\link{inherits}}, which implies that only S3
+  classes are correctly checked. This is done for speed
+  reasons as calling \code{\link{is}} is pretty slow.
+  Default is \code{FALSE}.}
 
   \item{len}{[\code{integer(1)}]\cr Length that argument
   must have.  Not checked if not passed, which is the

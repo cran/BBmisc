@@ -80,6 +80,14 @@ if (interactive()) {
     parallelStart(mode="multicore", log=tempdir())
     partest2(tempdir())
     parallelStop()
+    
+    # check error
+    # FIXME this does not work as parallel/multicore only generates a 
+    # warning not an error....
+    #parallelStart(mode="multicore", cpus=2)
+    #f = function(i) stop("fooo")
+    #expect_error(suppressWarnings(parallelMap(f, 1:3)), "fooo")
+    #parallelStop()    
   })
   
   test_that("parallel snowfall", {
@@ -98,5 +106,12 @@ if (interactive()) {
     parallelStart(mode="snowfall", cpus=2)
     partest3()
     parallelStop()
+
+    # check error
+    parallelStart(mode="snowfall", cpus=2)
+    f = function(i) stop("fooo")
+    expect_error(suppressWarnings(parallelMap(f, 1:3)), "fooo")
+    parallelStop()    
+    
   })
 }

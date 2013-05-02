@@ -34,14 +34,22 @@
 }
 \description{
   Use the parallelization mode and the other options set in
-  \code{\link{parallelStart}}. For multicore
-  \code{\link[multicore]{mclapply}} is used, for snowfall
+  \code{\link{parallelStart}}. For parallel/multicore
+  \code{\link[parallel]{mclapply}} is used, for snowfall
   \code{\link[snowfall]{sfClusterApplyLB}}.
 }
 \details{
   Large objects should be separately exported via
   \code{\link{parallelExport}}, they can be retrieved in
   slave code via \code{\link{parallelGetExported}}.
+
+  Note that there is a bug in
+  \code{\link[parallel]{mclapply}} of parallel because
+  exceptions raised during slave calls are not corretly
+  converted to try-errror objects (as claimed in the
+  documentation) but instead a warning is generated.
+  Because of this, \code{parallelMap} does not generate an
+  exception in this case either.
 }
 \examples{
 parallelStart()

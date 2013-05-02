@@ -1,3 +1,15 @@
+BBmisc_1.2-200:
+- checkArg can now test whether arg is one of multiple classes (OR disjunctive)
+- bug fix: cpus setting was not properly respected in multicore mode
+- bug fix: warnings where not turned into errors with warningf and option(warn=2)
+- some minor bug fixes
+- parallelMap: switched multicore mode to package parallel
+- new functions
+-- lib
+-- argsAsNamedList
+-- names2
+-- convertDfCols
+
 BBmisc_1.1-166:
 - some small fixes and added arguments
 - new functions:

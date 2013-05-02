@@ -14,7 +14,7 @@
   is 100.}
 
   \item{label}{[\code{character(1)}]\cr Label shown in
-  front of the progress bar.  Note, that if you later set
+  front of the progress bar.  Note that if you later set
   \code{msg} in the progress bar function, the message will
   be left-padded to the length of this label, therefore it
   should be at least as long as the longest message you
@@ -54,8 +54,7 @@
   display no bars at all. You can globally change the width
   of all bars by setting the option
   \code{options(BBmisc.ProgressBar.width)}. By default this
-  is \code{getOption("width")}. or \dQuote{off}, which
-  display no bars at all.
+  is \code{getOption("width")}.
 }
 \examples{
 bar <- makeProgressBar(max=5, label="test-bar")

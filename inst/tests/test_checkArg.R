@@ -49,7 +49,7 @@ test_that("checkArg with choices", {
   expect_error(f(1), "must be")
   expect_error(f(NULL), "must be")
   expect_error(f(NA))
-
+  
   f = function(x) checkArg(x, choices=list(NULL, 1L, data.frame()))
   f(1L)
   f(NULL)
@@ -68,7 +68,7 @@ test_that("checkArg with subset", {
   
   expect_error(f(1), "must be")
   expect_error(f(NA), "must be")
-
+  
   f = function(x) checkArg(x, subset=list(NULL, 1L, data.frame()))
   f(1L)
   f(NULL)
@@ -83,4 +83,31 @@ test_that("checkArg with missing arg", {
   expect_error(f(), "Argument x must not be missing!")
 })
 
+test_that("checkArg with classes / s3 and s4", {
+  x = 1
+  class(x) = c("foo2", "foo1")
+  checkArg(x, "foo1")
+  checkArg(x, "foo1", s4=FALSE)
+  checkArg(x, "foo1", s4=TRUE)
+  checkArg(x, "foo2")
+  checkArg(x, "foo2", s4=FALSE)
+  checkArg(x, "foo2", s4=TRUE)
+  mys41 = setClass("mys41", representation(x="numeric"))
+  mys42 = setClass("mys42", contains="mys41", representation(y="numeric"))
+  obj1 = mys41(x=3)
+  obj2 = mys42(x=3, y=4)
+  checkArg(obj1, "mys41", s4=TRUE)
+  checkArg(obj2, "mys41", s4=TRUE)
+  checkArg(obj2, "mys42", s4=TRUE)
+})
+
+
+test_that("checkArg with multiple classes", {
+  checkArg(1, c("numeric", "list"))
+  checkArg(1, c("numeric", "foo"))
+  checkArg(1L, c("integer", "list"))
+  checkArg(1L, c("integer", "foo"))
+  checkArg(1L, c("numeric", "list"))
+  checkArg(1L, c("numeric", "foo"))
+})
 

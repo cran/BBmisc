@@ -30,10 +30,11 @@
   See help of \code{\link[base]{save}}.
 }
 \description{
-  A simple wrapper for \code{save}. Understands key = value
-  syntax to save objects using arbitrary variable names.
-  All options of \code{\link[base]{save}}, except
-  \code{list} and \code{envir}, are available and passed to
+  A simple wrapper for \code{\link[base]{save}}.
+  Understands key = value syntax to save objects using
+  arbitrary variable names. All options of
+  \code{\link[base]{save}}, except \code{list} and
+  \code{envir}, are available and passed to
   \code{\link[base]{save}}.
 }
 \examples{
