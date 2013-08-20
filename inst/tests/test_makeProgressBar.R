@@ -3,7 +3,7 @@ context("makeProgressBar")
 test_that("makeProgressBar", {
   cat("\n")
   bar = makeProgressBar()
-  for(i in 0:100) { 
+  for(i in 0:100) {
     bar$set(i)
     Sys.sleep(0.01)
   }
@@ -24,7 +24,7 @@ test_that("makeProgressBar", {
     bar$set(i, msg=sprintf("%i", i))
     Sys.sleep(0.1)
   }
-  
+
   bar = makeProgressBar(min=0, max=0)
   bar$set(0)
   bar = makeProgressBar(min=0, max=0)
@@ -37,13 +37,13 @@ test_that("makeProgressBar global options", {
   options(BBmisc.ProgressBar.style = "off")
   cat("\n")
   bar = makeProgressBar(max=5)
-  for(i in 0:5) { 
+  for(i in 0:5) {
      expect_output(bar$set(i), "^$")
   }
   options(BBmisc.ProgressBar.style = "text", BBmisc.ProgressBar.width = 30)
   cat("\n")
   bar = makeProgressBar(max=5)
-  for(i in 0:5) { 
+  for(i in 0:5) {
      bar$set(i)
   }
   options(BBmisc.ProgressBar.style = old.style, BBmisc.ProgressBar.width = old.width)

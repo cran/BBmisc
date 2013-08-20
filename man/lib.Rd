@@ -5,8 +5,7 @@
   lib(...)
 }
 \arguments{
-  \item{...}{[any]\cr Package names as single strings or
-  character vectors.}
+  \item{...}{[any]\cr Package names.}
 }
 \value{
   [\code{logical}]: Named logical vector determining the

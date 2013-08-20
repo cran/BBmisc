@@ -54,8 +54,12 @@
   \item{na.ok}{[\code{logical(1)}]\cr Is it ok if a vector
   argument contains NAs?  Default is \code{TRUE}.}
 
-  \item{formals}{[\code{character}]\cr Is it ok if a vector
-  argument contains NAs?  Default is \code{TRUE}.}
+  \item{formals}{[\code{character}]\cr If this is passed,
+  \code{x} must be a function.  It is then checked that
+  \code{formals} are the names of the (first) formal
+  arguments in the signature of \code{x}.  Meaning
+  \code{checkArg(function(a, b), formals="a")} is ok.
+  Default is missing.}
 }
 \value{
   Nothing.

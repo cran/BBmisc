@@ -5,14 +5,17 @@
   is.error(x)
 }
 \arguments{
-  \item{x}{[any]\cr Return value of a
-  \code{\link{try}}-statement.}
+  \item{x}{[any]\cr Any object, usually the return value of
+  \code{\link[base]{try}}, \code{\link[base]{tryCatch}}, or
+  a function which may return a
+  \code{\link[base]{simpleError}}.}
 }
 \value{
   [\code{logical(1)}].
 }
 \description{
-  A simple wrapper for \code{is(x, "try-error")}.
+  Checks if an object is of class \dQuote{try-error} or
+  \dQuote{error}.
 }
 \examples{
 x <- try(stop("foo"))

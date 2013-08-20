@@ -16,7 +16,7 @@
   to \code{FUN.VALUE}.}
 
   \item{simplify}{[\code{logical(1)}]\cr If \code{TRUE}
-  \code{\link{sapply}} is used otherwise
+  \code{\link{sapply}} is used, otherwise
   \code{\link{lapply}}.  Default is \code{TRUE}.}
 
   \item{use.names}{[\code{logical(1)}]\cr If \code{TRUE}
