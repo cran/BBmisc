@@ -1,4 +1,6 @@
 #' Converts columns in a data frame to characters, factors or numerics.
+#' 
+#' \code{convertDfCols} is deprecated.
 #'
 #' @param df [\code{data.frame}]\cr
 #'   Data frame.
@@ -16,7 +18,7 @@
 #'   Default is \code{FALSE}.
 #' @export
 #' @return [\code{data.frame}].
-convertDfCols = function(df, chars.as.factor = FALSE, factors.as.char = FALSE, ints.as.num = FALSE, logicals.as.factor=FALSE) {
+convertDataFrameCols = function(df, chars.as.factor = FALSE, factors.as.char = FALSE, ints.as.num = FALSE, logicals.as.factor=FALSE) {
   checkArg(df, "data.frame")
   checkArg(chars.as.factor, "logical", len=1L, na.ok=FALSE)
   checkArg(factors.as.char, "logical", len=1L, na.ok=FALSE)
@@ -50,3 +52,8 @@ convertDfCols = function(df, chars.as.factor = FALSE, factors.as.char = FALSE, i
 
   as.data.frame(x, stringsAsFactors=FALSE)
 }
+
+#' @export
+#' @rdname convertDataFrameCols
+#FIXME remove this deprecated fun when not acessed from other packs anymore
+convertDfCols = convertDataFrameCols

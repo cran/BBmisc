@@ -15,6 +15,6 @@
   [\code{data.frame}].
 }
 \description{
-  Convert all character columns in data.frame to factors.
+  The function is DEPRECATED, use convertDataFrameCols!
 }
 

@@ -8,7 +8,8 @@
   \item{x}{[\code{vector}]\cr Vector to collapse.}
 
   \item{sep}{[\code{character(1)}]\cr Passed to
-  \code{collapse} in \code{\link{paste}}.}
+  \code{collapse} in \code{\link{paste}}.  Default is
+  \dQuote{,}.}
 }
 \value{
   [\code{character(1)}].
