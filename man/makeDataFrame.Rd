@@ -2,9 +2,8 @@
 \alias{makeDataFrame}
 \title{Initialize data.frame in a convenient way.}
 \usage{
-  makeDataFrame(nrow, ncol, col.types, init,
-    row.names = NULL,
-    col.names = sprintf("V\%i", seq_len(ncol)))
+makeDataFrame(nrow, ncol, col.types, init, row.names = NULL,
+  col.names = sprintf("V\%i", seq_len(ncol)))
 }
 \arguments{
   \item{nrow}{[\code{integer(1)}]\cr Nubmer of rows.}
@@ -13,7 +12,10 @@
 
   \item{col.types}{[\code{character(ncol)} |
   \code{character(1)}]\cr Data types of columns.  If you
-  only pass one type, it will be replicated.}
+  only pass one type, it will be replicated.  Supported are
+  all atomic modes also supported by
+  \code{\link[base]{vector}}, i.e. all common data frame
+  types except factors.}
 
   \item{init}{[any]\cr Scalar object to initialize all
   elements of the data.frame.  You do not need to specify
@@ -26,7 +28,7 @@
   names.  Default is \dQuote{V1}, \dQuote{V2}, and so on.}
 }
 \description{
-  Initialize data.frame in a convenient way.
+Initialize data.frame in a convenient way.
 }
 \examples{
 print(makeDataFrame(3, 2, init=7))
