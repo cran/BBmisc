@@ -15,9 +15,13 @@ extractSubList(xs, element, element.value, simplify = TRUE,
   \code{\link{vapply}} is used and this argument is passed
   to \code{FUN.VALUE}.}
 
-  \item{simplify}{[\code{logical(1)}]\cr If \code{TRUE}
-  \code{\link{sapply}} is used, otherwise
-  \code{\link{lapply}}.  Default is \code{TRUE}.}
+  \item{simplify}{[\code{logical(1)} | character(1)]\cr If
+  \code{FALSE} \code{\link{lapply}} is used, otherwise
+  \code{\link{sapply}}.  If \dQuote{cols}, we expect the
+  elements to be vectors of the same length and they are
+  arranged as the columns of the resulting matrix.  If
+  \dQuote{rows}, likewise, but rows of the resulting
+  matrix.  Default is \code{TRUE}.}
 
   \item{use.names}{[\code{logical(1)}]\cr If \code{TRUE}
   and \code{xs} is named, the result is named as \code{xs},
@@ -25,7 +29,8 @@ extractSubList(xs, element, element.value, simplify = TRUE,
   \code{TRUE}.}
 }
 \value{
-[\code{list} or simplified vector].
+[\code{list} | simplified \code{vector} | \code{matrix}].
+See above.
 }
 \description{
 Extracts a named element from a list of lists.

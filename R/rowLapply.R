@@ -14,9 +14,12 @@
 #'   Unlist the row? Note that automatic conversion may be triggered for
 #'   lists of mixed data types
 #'   Default is \code{FALSE}.
-#' @param simplify [\code{logical(1)}]\cr
+#' @param simplify [\code{logical(1)} | character(1)]\cr
 #'   Should the result be simplified?
 #'   See \code{\link{sapply}}.
+#'   If \dQuote{cols}, we expect the call results to be vectors of the same length and they are
+#'   arranged as the columns of the resulting matrix.
+#'   If \dQuote{rows}, likewise, but rows of the resulting matrix.
 #'   Default is \code{TRUE}.
 #' @param use.names [\code{logical(1)}]\cr
 #'   Should result be named by the row names of \code{df}?
@@ -28,13 +31,13 @@
 rowLapply = function(df, fun, ..., unlist = FALSE) {
   checkArg(df, "data.frame")
   fun = match.fun(fun)
-  checkArg(unlist, "logical", len=1L, na.ok=FALSE)
+  checkArg(unlist, "logical", len = 1L, na.ok = FALSE)
   if(unlist) {
     .wrap = function(.i, .df, .fun, ...)
-      .fun(unlist(.df[.i, ], recursive=FALSE, use.names=TRUE), ...)
+      .fun(unlist(.df[.i, , drop = FALSE], recursive = FALSE, use.names = TRUE), ...)
   } else {
     .wrap = function(.i, .df, .fun, ...)
-      .fun(as.list(.df[.i, ]), ...)
+      .fun(as.list(.df[.i, , drop = FALSE]), ...)
   }
 
   lapply(seq_row(df), .wrap, .fun = fun, .df = df, ...)
@@ -42,12 +45,23 @@ rowLapply = function(df, fun, ..., unlist = FALSE) {
 
 #' @export
 #' @rdname rowLapply
-rowSapply = function(df, fun, ..., unlist = FALSE, simplify=TRUE, use.names=TRUE) {
-  checkArg(simplify, "logical", len=1L, na.ok=FALSE)
-  checkArg(use.names, "logical", len=1L, na.ok=FALSE)
-  ys = rowLapply(df, fun, ..., unlist = FALSE)
-  if (simplify && length(ys)) 
-    ys = simplify2array(ys)
+rowSapply = function(df, fun, ..., unlist = FALSE, simplify = TRUE, use.names = TRUE) {
+  checkArg(simplify, c("logical", "character"), len = 1L, na.ok = FALSE)
+  if (is.character(simplify))
+    checkArg(simplify, choices = c("cols", "rows"))
+  else
+    checkArg(simplify, "logical", len = 1L, na.ok = FALSE)
+  checkArg(use.names, "logical", len=1L, na.ok = FALSE)
+  ys = rowLapply(df, fun, ..., unlist = unlist)
+  if (length(ys) > 0L) {
+    if (isTRUE(simplify)) {
+      ys = simplify2array(ys)
+    } else if (simplify == "rows") {
+      ys = asMatrixRows(ys)
+    } else if (simplify == "cols") {
+      ys = asMatrixCols(ys)
+    }
+  }
   if (use.names) {
     if (is.matrix(ys)) {
       colnames(ys) = rownames(df)

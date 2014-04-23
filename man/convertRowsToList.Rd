@@ -1,27 +1,40 @@
 \name{convertRowsToList}
+\alias{convertColsToList}
 \alias{convertRowsToList}
-\title{Convert rows of data.frame or matrix to lists.}
+\title{Convert rows (columns) of data.frame or matrix to lists.}
 \usage{
-convertRowsToList(x, use.names = FALSE, factors.as.char = TRUE)
+convertRowsToList(x, name.list = TRUE, name.vector = FALSE,
+  factors.as.char = TRUE, as.vector = TRUE)
+
+convertColsToList(x, name.list = FALSE, name.vector = FALSE,
+  factors.as.char = TRUE, as.vector = TRUE)
 }
 \arguments{
   \item{x}{[\code{matrix} | \code{data.frame}]\cr Object to
   convert.}
 
-  \item{use.names}{[\code{logical(1)}]\cr Name elements of
-  lists with column names of \code{x}.  Default is
+  \item{name.list}{[\code{logical(1)}]\cr Name resulting
+  list with names of rows (cols) of \code{x}?  Default is
   \code{FALSE}.}
+
+  \item{name.vector}{[\code{logical(1)}]\cr Name vector
+  elements in resulting list with names of cols (rows) of
+  \code{x}?  Default is \code{FALSE}.}
 
   \item{factors.as.char}{[\code{logical(1)}]\cr If \code{x}
   is a data.frame, convert factor columns to string
   elements in the resulting lists?  Default is
   \code{TRUE}.}
+
+  \item{as.vector}{[\code{logical(1)}]\cr If \code{x} is a
+  matrix, store rows as vectors in the resulting list - or
+  otherwise as lists?  Default is \code{TRUE}.}
 }
 \value{
-[\code{list} of lists].
+[\code{list} of lists or vectors].
 }
 \description{
-For each row, one list is constructed, each entry of the
-row becomes a separate list element.
+For each row, one list/vector is constructed, each entry of
+the row becomes a list/vector element.
 }
 
