@@ -22,12 +22,11 @@
 #' @export
 convertRowsToList = function(x, name.list = TRUE, name.vector = FALSE,
   factors.as.char = TRUE, as.vector = TRUE) {
-
-  checkArg(x, c("matrix", "data.frame"))
-  checkArg(name.list, "logical", len = 1L, na.ok = FALSE)
-  checkArg(name.vector, "logical", len = 1L, na.ok = FALSE)
-  checkArg(factors.as.char, "logical", len = 1L, na.ok = FALSE)
-  checkArg(as.vector, "logical", len = 1L, na.ok = FALSE)
+  assert(checkMatrix(x), checkDataFrame(x))
+  assertFlag(name.list)
+  assertFlag(name.vector)
+  assertFlag(factors.as.char)
+  assertFlag(as.vector)
   ns.list = if (name.list) rownames(x) else NULL
   ns.vector = if (name.vector) colnames(x) else NULL
   if (is.matrix(x)) {
@@ -47,6 +46,19 @@ convertRowsToList = function(x, name.list = TRUE, name.vector = FALSE,
 #' @export
 convertColsToList = function(x, name.list = FALSE, name.vector= FALSE,
   factors.as.char = TRUE, as.vector = TRUE) {
+
+  # we need a special case for df and can ignore as.vector in it
+  if (is.data.frame(x)) {
+    if (factors.as.char)
+      x = convertDataFrameCols(x, factors.as.char = TRUE)
+    y = as.list(x)
+    if (name.vector) {
+      ns.vector = if (name.vector) colnames(x) else NULL
+      y = lapply(y, function(z) setNames(z, ns.vector))
+    }
+    colnames(y) = if (name.list) colnames(x) else NULL
+    return(y)
+  }
 
   convertRowsToList(t(x), name.list = name.list, name.vector = name.vector,
     factors.as.char = factors.as.char, as.vector = as.vector)
