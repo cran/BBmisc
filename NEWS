@@ -1,3 +1,13 @@
+BBmisc_1.8
+- Options for the ProgressBar can now be directly passed to the constructor.
+- Fixed smaller bugs in normalize
+
+- new functions
+-- itostr
+-- getRelativePath
+-- splitPath
+-- do.call2
+
 BBmisc_1.7:
 - extractSubList allows for repeated indexing
 
