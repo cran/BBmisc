@@ -1,5 +1,5 @@
 Package: BBmisc
-Title: Miscellaneous helper functions for B. Bischl.
+Title: Miscellaneous Helper Functions for B. Bischl
 Description: Miscellaneous helper functions for and from B. Bischl and
     some other guys at TU Dortmund, mainly for package development.
 Authors@R: c(person("Bernd", "Bischl", email = "bernd_bischl@gmx.net",
@@ -13,11 +13,11 @@ BugReports: https://github.com/berndbischl/BBmisc/issues
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 Imports: stats, checkmate
-Suggests: testthat, microbenchmark
+Suggests: testthat, microbenchmark, codetools
 LazyData: yes
 ByteCompile: yes
-Version: 1.8
-Packaged: 2014-10-30 17:28:43 UTC; bischl
+Version: 1.9
+Packaged: 2015-02-03 12:39:37 UTC; bischl
 Author: Bernd Bischl [aut, cre],
   Michel Lang [aut],
   Jakob Bossek [aut],
@@ -26,4 +26,4 @@ Author: Bernd Bischl [aut, cre],
 Maintainer: Bernd Bischl <bernd_bischl@gmx.net>
 NeedsCompilation: yes
 Repository: CRAN
-Date/Publication: 2014-10-30 19:34:48
+Date/Publication: 2015-02-03 14:03:05
