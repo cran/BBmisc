@@ -19,6 +19,8 @@
 #'   \dQuote{range}: Scale to a given range.\cr
 #' @param range [\code{numeric(2)}]\cr
 #'   Range for method \dQuote{range}.
+#'   The first value represents the replacement for the min value, the second is the substitute for the max value.
+#'   So it is possible to reverse the order by giving \code{range = c(1,0)}.
 #'   Default is \code{c(0,1)}.
 #' @param margin [\code{integer(1)}]\cr
 #'   1 = rows, 2 = cols.
@@ -65,7 +67,7 @@ normalize.matrix = function(x, method = "standardize", range = c(0, 1), margin =
 normalize.data.frame = function(x, method = "standardize", range = c(0, 1), margin = 1L, on.constant = "quiet") {
   isnum = sapply(x, is.numeric)
   if (any(isnum))
-    x = as.data.frame(lapply(x[, isnum, drop = FALSE], normalize2, method = method,
+    x[, isnum] = as.data.frame(lapply(x[, isnum, drop = FALSE], normalize2, method = method,
       range = range, on.constant = on.constant))
   return(x)
 }
