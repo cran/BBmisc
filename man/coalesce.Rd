@@ -14,8 +14,11 @@ Arguments.}
 [any].
 }
 \description{
-Returns first non-missing, non-null argument, otherwise
-\code{NULL}.
+Returns first non-missing, non-null argument, otherwise \code{NULL}.
+
+We have to perform some pretty weird \code{\link{tryCatch}} stuff internally,
+so you should better not pass complex function calls into the arguments that can throw exceptions,
+as these will be completely muffled, and return \code{NULL} in the end.
 }
 \examples{
 f = function(x,y) {
@@ -23,4 +26,3 @@ f = function(x,y) {
 }
 f(y = 3)
 }
-

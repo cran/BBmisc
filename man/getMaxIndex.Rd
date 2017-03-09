@@ -3,11 +3,14 @@
 \name{getMaxIndex}
 \alias{getMaxIndex}
 \alias{getMinIndex}
-\title{Return index of maximal/minimal element in numerical vector.}
+\alias{getBestIndex}
+\title{Return index of maximal/minimal/best element in numerical vector.}
 \usage{
 getMaxIndex(x, ties.method = "random", na.rm = FALSE)
 
 getMinIndex(x, ties.method = "random", na.rm = FALSE)
+
+getBestIndex(x, minimize = TRUE, ...)
 }
 \arguments{
 \item{x}{[\code{numeric}]\cr
@@ -22,6 +25,13 @@ Default is \dQuote{random}.}
 If \code{FALSE}, NA is returned if an NA is encountered in \code{x}.
 If \code{TRUE}, NAs are disregarded.
 Default is \code{FALSE}}
+
+\item{minimize}{[\code{logical(1)}]\cr
+Minimal element is considered best?
+Default is \code{TRUE}.}
+
+\item{...}{[any]\cr
+Further arguments passed down to the delegate.}
 }
 \value{
 [\code{integer(1)}].
@@ -30,4 +40,7 @@ Default is \code{FALSE}}
 If \code{x} is empty or only contains NAs which are to be removed,
 -1 is returned.
 }
-
+\note{
+Function \code{getBestIndex} is a simple wrapper for \code{getMinIndex} or
+\code{getMaxIndex} respectively depending on the argument \code{minimize}.
+}
