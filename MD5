@@ -1,4 +1,4 @@
-7c38058c9e05b2f470d810b581add28b *DESCRIPTION
+7c9cb5d99d20e9b1a01444f1c6ad57b8 *DESCRIPTION
 835c958ee5c6e6c07b2cb6221216f099 *LICENSE
 787afb074fb52b1f05d5e89f0330ca71 *NAMESPACE
 e0ae6b9b44de6be949e9343793da7d66 *NEWS
@@ -59,9 +59,9 @@ b1889a315d4c67abf957656bafc4edfb *R/lib.R
 0f7bf8cb1feaad3dc90a34268e79ae9f *R/load2.R
 64959e639392429ee334776b490b6c41 *R/lsort.R
 692df0b72f047ddc3c9de85af99acb0e *R/makeDataFrame.R
-ca0e4b8b642961b4d3d095fd5e9037c6 *R/makeProgressBar.R
+2ab7622f3da73acb3c1e59ec768b410c *R/makeProgressBar.R
 3005179353ae8a3fe527e2f4d4e4c5a3 *R/makeS3Obj.R
-e4c87c84ca1820b2645dd8ba1447bcf6 *R/makeSimpleFileLogger.R
+5e4783de905329462600d9e8d064d94a *R/makeSimpleFileLogger.R
 f4549d2b6ab7380fae0734c9ca4e72f5 *R/mapValues.R
 37bf66a89beb286130e56c53e8980c67 *R/matchDataFrameSubset.R
 1d93558247bae14825e63544d8567985 *R/messagef.R
@@ -157,9 +157,9 @@ eefed4a9f351b4f28ef202c54578da25 *man/itostr.Rd
 f646c046dacd2509467ff8fcf67e15bf *man/lsort.Rd
 55ddaf68cf3eaa39932f288ffdf8280c *man/makeDataFrame.Rd
 8a20556349d0cae1ea5ad65b1139b304 *man/makeFileCache.Rd
-1d24e6dfa760c2ca513087113c08beec *man/makeProgressBar.Rd
+e0f0cb8c8b689d560496bd5d71f4b8aa *man/makeProgressBar.Rd
 b17c11eb3897f4b1d1d7e04b20a4d1db *man/makeS3Obj.Rd
-ed4fb2d1843c868b1dcffa9226d87bbf *man/makeSimpleFileLogger.Rd
+8ffc5ec370692f8f1dae763ae7b43714 *man/makeSimpleFileLogger.Rd
 101ac6000480e7d8b021b10991c8ff6d *man/mapValues.Rd
 6afb888f9cdb5e6cfaaf9305e3580fa4 *man/messagef.Rd
 2c42698177f543d5f6ed9d476f824a54 *man/namedList.Rd
@@ -194,7 +194,7 @@ a331aa16cef9625fe2fa5fadb7a5774e *man/system3.Rd
 643a7c30b3a30ff5dd09fb9bd489e664 *man/which.first.Rd
 20e1cef456a59f10d0aebc2bc04141a2 *src/getMaxColRowIndex.c
 b4ca93c6a67163a7c82cc5a9d7c5d9ab *src/getMaxColRowIndex.h
-215e5f24199a05a51ab455c21930a6b8 *src/getMaxIndex.c
+4b5052cc3db3da0f59ba38d57f046fa2 *src/getMaxIndex.c
 0d96853448b5dca87def14226172c66c *src/getMaxIndex.h
 daab07f29bcb1f7adf4a4d8f6a442a67 *src/init.c
 83957d4a67abf8f6b3f399b2d3c96cc1 *src/itostr.c
