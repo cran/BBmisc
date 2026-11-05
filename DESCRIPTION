@@ -1,6 +1,6 @@
 Package: BBmisc
 Title: Miscellaneous Helper Functions for B. Bischl
-Version: 1.13.1
+Version: 1.13.2
 Authors@R: c(
     person("Bernd", "Bischl", , "bernd_bischl@gmx.net", role = c("aut", "cre")),
     person("Michel", "Lang", , "michellang@gmail.com", role = "aut"),
@@ -20,7 +20,7 @@ ByteCompile: yes
 Encoding: UTF-8
 RoxygenNote: 7.3.3
 NeedsCompilation: yes
-Packaged: 2026-01-21 10:42:03 UTC; marc
+Packaged: 2026-11-04 15:55:09 UTC; marc
 Author: Bernd Bischl [aut, cre],
   Michel Lang [aut],
   Jakob Bossek [aut],
@@ -29,4 +29,4 @@ Author: Bernd Bischl [aut, cre],
   Dirk Surmann [aut]
 Maintainer: Bernd Bischl <bernd_bischl@gmx.net>
 Repository: CRAN
-Date/Publication: 2026-01-21 11:20:02 UTC
+Date/Publication: 2026-11-05 21:10:02 UTC

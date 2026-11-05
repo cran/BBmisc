@@ -1,8 +1,8 @@
-5e34f5fa7e56c7de4c86ce640344caa8 *DESCRIPTION
+becd0fc8995b5622912c12761f4727cc *DESCRIPTION
 835c958ee5c6e6c07b2cb6221216f099 *LICENSE
 787afb074fb52b1f05d5e89f0330ca71 *NAMESPACE
 e0ae6b9b44de6be949e9343793da7d66 *NEWS
-a16b452bcdeb4783bbe551ad40419b7c *NEWS.md
+888bbaa95c62a5f1d7570242d63bf178 *NEWS.md
 5163b88bfe4e4dd5355719d2c704f358 *R/FileCache.R
 0de8a40c4dac0c519b2a86d5f2403d4f *R/addClasses.R
 a35357ce5aa317c84ffdb83c27a9905c *R/argsAsNamedList.R
@@ -98,6 +98,7 @@ adfa19d9267cdb20e10786e6b92a552f *R/warningf.R
 d880fdb544a3d35aaaab05e2b60cf975 *R/which.first.R
 962ac41ba4b72923d49fc0be9b7bb6cc *R/zzz.R
 27d3ebe7f82c7ba3a24cad5da67a6adf *R/zzz_deprecated.R
+57f04f72e7238c3295d02ed079542bda *README.md
 99adfc9462771541536615384c4c4833 *man/addClasses.Rd
 9317ba0ad716c396d58281dcdfd19d1e *man/argsAsNamedList.Rd
 fee8a22c6822aa17a424e0dc5861bab0 *man/asMatrixCols.Rd
@@ -261,7 +262,7 @@ d06ec9a9e27677e23f8a9d8fd030748e *tests/testthat/test_nin.R
 d937f2e0f11346490140f08998bcbff1 *tests/testthat/test_normalize.R
 98a1a85a55a68773c748dab8f4f0ad40 *tests/testthat/test_optimizeSubInts.R
 4f8e94cf1ba14b637aeb4e62a008d27e *tests/testthat/test_printHead.R
-4ec4fcdd19c7734b29a9107d85c8f4fe *tests/testthat/test_printStrToChar.R
+c8c91c64891fdfc985eb2b9a569d969f *tests/testthat/test_printStrToChar.R
 edc7badddfe9bd1c8fe1fb0a77901d16 *tests/testthat/test_printToChar.R
 77530a85391710d9f2eedd2d9fc87e4c *tests/testthat/test_printf.R
 1442290f39895a964fd1972ed35f7611 *tests/testthat/test_rangeVal.R
